@@ -31,7 +31,7 @@ public class TimeLineAddService implements Action {
 
 		if (rowcount > 0) {
 			msg = "글이 등록되었습니다.";
-			url = "index2.jsp";
+			url = "default.jsp";
 		} else {
 			msg = "글 등록이 실패하였습니다.";
 			url = "TimeLineWrite.tc";
