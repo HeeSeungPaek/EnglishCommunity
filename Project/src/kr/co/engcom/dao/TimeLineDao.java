@@ -59,9 +59,9 @@ public class TimeLineDao {
 		String sql = "select no, content_eng, content_kor, timelinenumber "
 				+ "from "
 				+ "(select rownum as no, content_eng, content_kor, timelinenumber "
-				+ "from timeline"
-				+ " where rownum <=?"
-				+ ")where no>=? order by timelinenumber" ;
+				+ "from timeline "
+				+ " where rownum <=? order by timelinenumber"
+				+ ")where no>=? " ;
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
