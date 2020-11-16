@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 컨텐츠 -->
 <div class="wrapper">
-	<!-- 오늘의 회화 -->
+	<!-- 오늘의 회화 -->`
 	<div class="row">
 		<div class="col-13 col-m-12 col-sm-12">
 			<div class="card">
@@ -172,7 +172,6 @@
 				</div>
 				</div>
 			</div>
-
 			<!-- //날씨 -->
 			
 			<!-- 오늘의 단어퀴즈 -->
