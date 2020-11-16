@@ -86,17 +86,17 @@
 													</c:when>
 													<c:otherwise>
 														<a href="./BoardList.bo?page=${a}">[${a}]</a>
-														&nbsp;
+														
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>
 											
 											<c:choose>
 												<c:when test="${page>=maxpage}">
-													[다음]
+													&nbsp;[다음]
 												</c:when>
 												<c:otherwise>
-													<a href="./BoardList.bo?page=${page+1}">[다음]</a>
+													&nbsp;<a href="./BoardList.bo?page=${page+1}">[다음]</a>
 												</c:otherwise>
 											</c:choose>
 										</td>
