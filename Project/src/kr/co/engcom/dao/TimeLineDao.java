@@ -56,12 +56,11 @@ public class TimeLineDao {
 	public List<TimeLine> getTimeLineList(int currpage, int pagesize) {
 		List<TimeLine> timelinelist = null;
 		
-		String sql = "select no, content_eng, content_kor, timelinenumber "
-				+ "from "
+		String sql = "select no, content_eng, content_kor, timelinenumber from "
 				+ "(select rownum as no, content_eng, content_kor, timelinenumber "
-				+ "from timeline"
-				+ " where rownum <=?"
-				+ ")where no>=? order by timelinenumber" ;
+				+ "from (select * from timeline order by timelinenumber) "
+				+ " where rownum <=? "
+				+ ")where no>=? " ;
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);

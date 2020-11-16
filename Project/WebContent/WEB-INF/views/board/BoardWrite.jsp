@@ -6,16 +6,11 @@
 <html lang="ko">
 <head>
 <jsp:include page="/common/summernote.jsp"></jsp:include>
-
-<script>
-
+<script language="javascript">
 	function addboard() {
 		boardform.submit();
 	}
-	
-
-	
-    $(document).ready(function() {
+	$(function(){
 	    $('#summernote').summernote({
 	        placeholder: '내용을 입력하세요',
 	        tabsize: 2,
@@ -43,10 +38,7 @@
 		        ]
 	        ]
 	      });
-
-    });
-
-
+	});
 </script>
 
 
@@ -57,7 +49,7 @@
 	<jsp:include page="/common/top.jsp"></jsp:include>
 	<jsp:include page="/common/left.jsp"></jsp:include>
 	<jsp:include page="/common/login.jsp"></jsp:include>
-	<c:set var="userid" value="${sessionScope.userid}" />
+	<c:set var="userid" value="${sessionScope.userid}"/>
 	<!-- 컨텐츠 -->
 	<div class="wrapper">
 		<!-- 전체 게시판 -->
@@ -71,62 +63,57 @@
 					<div class="card-content">
 
 						<form action="./BoardAddService.bo" method="post"
-							enctype="multipart/form-data" id="boardform" name="boardform">
+							enctype="multipart/form-data" name="boardform">
 							<input type="hidden" name="id" value="${userid}">
-							<table style="word-break: break-all; table-layout: fixed;">
+							<table>
 
 								<tr>
-									<td>
+									<td style="font-family: 돋음; font-size: 12" height="16">
 										<div align="center">글쓴이</div>
 									</td>
-									<td colspan="4" class="leftAlign">${userid}</td>
+									<td class="leftAlign">${userid}</td>
 								</tr>
 								<tr>
-									<td>
+									<td style="font-family: 돋음; font-size: 12" height="16">
 										<div align="center">카테고리</div>
 									</td>
-									<td colspan="4" class="leftAlign"><select id="english"
-										name="boardName">
+									<td class="leftAlign">
+										<select id="english" name="boardName">
 											<option value="Grammar">Grammar</option>
 											<option value="Reading">Reading</option>
 											<option value="Listening">Listening</option>
-									</select></td>
+										</select>
+									</td>
 								</tr>
 								<tr>
-									<td>
+									<td style="font-family: 돋음; font-size: 12" height="16">
 										<div align="center">제 목</div>
 									</td>
-									<td colspan="4">
-									<input id="contentTitle" name="contentTitle" type="text" 
-									size="50" maxlength="100" value="" style="width: 100%;" /></td>
-
+									<td><input name="contentTitle" type="text" size="50"
+										maxlength="100" value="" style="width:100%;" /></td>
 								</tr>
 								<tr>
-									<td>
+									<td style="font-family: 돋음; font-size: 12">
 										<div align="center">내 용</div>
 									</td>
-									<td colspan="4" class="leftAlign">
-									<textarea id="summernote" name="content"
-											style="resize: vertical;"></textarea>
+									<td style="text-align:left;">
+									<textarea id="summernote" name="content"></textarea>
 								</tr>
 								<tr>
-									<td>
+									<td style="font-family: 돋음; font-size: 12">
 										<div align="center">파일 첨부</div>
 									</td>
-									<td colspan="4" class="leftAlign">
-									<input name="filename" type="file" /></td>
+									<td><input name="filename" type="file" /></td>
 								</tr>
-
 								<tr bgcolor="cccccc">
-									<td colspan="5" style="height: 1px;"></td>
+									<td colspan="2" style="height: 1px;"></td>
 								</tr>
 								<tr>
-									<td colspan="5">&nbsp;</td>
+									<td colspan="2">&nbsp;</td>
 								</tr>
 								<tr align="center" valign="middle">
-									<td colspan="5"><input type="submit" value="등록"> 
-									<!-- <a href="javascript:addboard()">[등록]</a>&nbsp;&nbsp; -->
-									<a href="javascript:history.go(-1)"><button>뒤로</button></a></td>
+									<td colspan="5"><a href="javascript:addboard()">[등록]</a>&nbsp;&nbsp;
+										<a href="javascript:history.go(-1)">[뒤로]</a></td>
 								</tr>
 							</table>
 						</form>
@@ -139,7 +126,7 @@
 	</div>
 
 
-	<jsp:include page="/common/footer.jsp"></jsp:include>
-	<jsp:include page="/common/script.jsp"></jsp:include>
+		<jsp:include page="/common/footer.jsp"></jsp:include>
+		<jsp:include page="/common/script.jsp"></jsp:include>
 </body>
 </html>

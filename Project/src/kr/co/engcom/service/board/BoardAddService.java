@@ -18,7 +18,6 @@ import kr.co.engcom.dto.BoardDto;
 public class BoardAddService implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException {
-		request.setCharacterEncoding("utf-8");
 		
 		BoardDao boarddao=new BoardDao();
 	   	BoardDto boarddata=new BoardDto();
@@ -30,7 +29,7 @@ public class BoardAddService implements Action{
 		String realFolder="";
    		String saveFolder="boardupload";
    		
-   		int fileSize=10*1024*1024;
+   		int fileSize=5*1024*1024;
    		
    		realFolder=request.getRealPath(saveFolder);
    		System.out.println("realFolder: " + realFolder);

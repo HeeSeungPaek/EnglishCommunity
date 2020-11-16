@@ -21,10 +21,10 @@ public class TimeLineDeleteService implements Action{
 			
 			if(rowcount > 0) {
 				msg="정상적으로 삭제되었습니다.";
-				url="index2.jsp";
+				url="default.jsp";
 			}else {
 				msg="삭제에 실패하였습니다.";
-				url="index2.jsp";
+				url="default.jsp";
 				System.out.println("삭제실패2");
 			}
 		}catch (Exception e) {
