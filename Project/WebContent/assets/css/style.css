@@ -107,29 +107,46 @@ h1 {
 }
 /* 번역기 11.14 추가 오정은*/
 .papago {
+	float:left;
 	position: relative;
 	margin: auto;
-	width: 40%;
+	width: 60%;
+}
+.hidden{
+	display:none;
 }
 .papago input {
+	float:left;
 	border: none;
 	padding: 12px 50px 12px 50px;
-	width: 100%;
+	width: 50%;
 	outline: none;
 	color: var(--main-color);
 	border-radius: 20px;
 }
+
 .papago-btn {
 	background-color: #fff;
 }
-.papago i {
+#papagobutton{
 	position: absolute;
 	top: 50%;
-	right: 20px;
+	right: 3%;
 	transform: translateY(-50%);
 	color: #9a5fcb;
 	cursor: pointer;
 }
+.search{
+	position: absolute;
+	top: 50%;
+	right: 53%;
+	transform: translateY(-50%);
+	color: #9a5fcb;
+	cursor: pointer;
+}
+
+
+
 .papago-page-btn {
 	background-color: #fff;
 }

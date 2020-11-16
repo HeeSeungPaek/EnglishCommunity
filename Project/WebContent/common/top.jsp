@@ -24,12 +24,32 @@
 	<!-- //좌측 네비게이션 -->
 	
 	<!-- 번역기 11.14 추가 오정은 -->
-	<form class="papago">
-		<input type="text" onclick="location.href='papago.go'" alt ="번역 팝업창 버튼" class="papago-page-btn" placeholder="papago...">
+	<!-- <form class="papago">
+		<input type="text" onclick="location.href='kor.papago'" alt ="번역 팝업창 버튼" class="papago-page-btn" placeholder="papago...">
 		<i class="fas fa-search"></i>
-	</form>
+	</form> -->
 	<!-- //번역기 -->
-
+	 <form class="papago" >
+	<!--  	<select id="papagoselect" name="papagoselect">
+	 	<option value="한영" selected="selected">한->영</option>
+	 	<option value="영한">영->한</option>
+	 	</select> -->
+		<!-- <input type="button" id="papagobutton" value="한영전환" /> -->
+		<i class='fas fa-exchange-alt' class='change' id="papagobutton" title="한영 전환"></i>
+		<div id="papagoinput_kor" class="">
+		<input id='send_text' class='papago-page-btn' name='content' placeholder='한글'/> 
+		<input id='result_text' class='papago-page-btn' name='content' placeholder='영어' readonly />
+		<i class='fas fa-search search'  id='jsonConvertStringSend' title="번역"></i>
+		</div>
+		<div id="papagoinput_eng" class="hidden">
+		<input id='send_text2' class='papago-page-btn' name='content' placeholder='영어' /> 
+		<input id='result_text2' class='papago-page-btn' name='content' placeholder='한글' readonly />
+		<i class='fas fa-search search'  id='jsonConvertStringSend2' title="번역"></i>
+		</div>
+	    <!-- <button class="submit" id="jsonConvertStringSend" type="button">번역</button> -->
+	   
+	</form>
+	
 	<!-- 우측 네비게이션 -->
 	<ul  class="navbar-nav nav-right" >	
 		<div class="avt dropdown" >
