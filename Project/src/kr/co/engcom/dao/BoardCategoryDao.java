@@ -117,8 +117,8 @@ public class BoardCategoryDao {
 				+ "content, filename, filesize, refer, depth, step, "
 				+ "boardCode, boardName, "
 				+ "TO_CHAR(ReportingDate, 'YYYY/MM/DD') AS ReportingDate from "
-				+ "(select * from board where boardName='Grammar' order by Refer desc, Step asc)) "
-				+ "where rnum>=? and rnum<=?";
+				+ "(select * from board order by Refer desc, Step asc)) "
+				+ "where rnum>=? and rnum<=? and boardName=?";
 		
 		
 		List<BoardDto> boardlist = new ArrayList<>();
@@ -130,6 +130,7 @@ public class BoardCategoryDao {
 			pstmt = conn.prepareStatement(board_list_sql);
 			pstmt.setInt(1, startrow);
 			pstmt.setInt(2, endrow);
+			pstmt.setString(3, "Grammar");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				BoardDto board = new BoardDto(); 	
@@ -171,8 +172,8 @@ public class BoardCategoryDao {
 					+ "content, filename, filesize, refer, depth, step, "
 					+ "boardCode, boardName, "
 					+ "TO_CHAR(ReportingDate, 'YYYY/MM/DD') AS ReportingDate from "
-					+ "(select * from board where boardName='Reading' order by Refer desc, Step asc )) "
-					+ "where rnum>=? and rnum<=?";
+					+ "(select * from board order by Refer desc, Step asc)) "
+					+ "where rnum>=? and rnum<=? and boardName=?";
 			
 			
 			List<BoardDto> boardlist = new ArrayList<>();
@@ -184,9 +185,10 @@ public class BoardCategoryDao {
 				pstmt = conn.prepareStatement(board_list_sql);
 				pstmt.setInt(1, startrow);
 				pstmt.setInt(2, endrow);
+				pstmt.setString(3, "Reading");
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
-					BoardDto board = new BoardDto();
+					BoardDto board = new BoardDto(); 	
 					board.setContentNumber(rs.getInt(2));		//글번호
 					board.setId(rs.getString(3));				//아이디
 					board.setContentTitle(rs.getString(4));		//글제목
@@ -225,8 +227,8 @@ public class BoardCategoryDao {
 					+ "content, filename, filesize, refer, depth, step, "
 					+ "boardCode, boardName, "
 					+ "TO_CHAR(ReportingDate, 'YYYY/MM/DD') AS ReportingDate from "
-					+ "(select * from board where boardName='Listening' order by Refer desc, Step asc)) "
-					+ "where rnum>=? and rnum<=?";
+					+ "(select * from board order by Refer desc, Step asc)) "
+					+ "where rnum>=? and rnum<=? and boardName=?";
 			
 			
 			List<BoardDto> boardlist = new ArrayList<>();
@@ -238,6 +240,7 @@ public class BoardCategoryDao {
 				pstmt = conn.prepareStatement(board_list_sql);
 				pstmt.setInt(1, startrow);
 				pstmt.setInt(2, endrow);
+				pstmt.setString(3, "Listening");
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
 					BoardDto board = new BoardDto(); 	

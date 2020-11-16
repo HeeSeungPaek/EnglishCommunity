@@ -48,9 +48,10 @@ public class BoardGrammarCategoryListService implements Action{
 		request.setAttribute("endpage", endpage); //현재 페이지에 표시할 끝 페이지 수
 		request.setAttribute("listcount", listcount); //글 수
 		request.setAttribute("boardlist", boardlist);
+		request.setAttribute("board", boardlist.get(0));
 		
 		forward.setRedirect(false);
-		forward.setPath("./WEB-INF/views/board/BoardCategoryGrammarList.jsp");
+		forward.setPath("./WEB-INF/views/board/BoardCategoryList.jsp");
 		return forward;
 		
 	}

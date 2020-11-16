@@ -61,8 +61,7 @@
 					</div>
 					<div class="card-content">
 						<!-- 게시판 답변 -->
-						<form action="./BoardReplyService.bo" method="post" 
-							enctype="multipart/form-data" id="boardform" name="boardform">
+						<form action="./BoardReplyService.bo" method="post" name="boardform">
 							<input type="hidden" name="contentNumber" value="${board.contentNumber}">
 							<input type="hidden" name="boardName" value="${board.boardName}"> 
 							<input type="hidden" name="refer" value="${board.refer}">
@@ -70,44 +69,44 @@
 							<input type="hidden" name="step" value="${board.step}"> 
 							<input type="hidden" name="id" value="${userid}">
 
-							<table style="word-break:break-all; table-layout:fixed;">
+							<table cellpadding="0" cellspacing="0">
 								<tr align="center" valign="middle">
 									<td colspan="5"></td>
 								</tr>
 								<tr>
-									<td>
+									<td style="font-family: 돋음; font-size: 12" height="16">
 										<div align="center">글쓴이</div>
 									</td>
-									<td colspan="4" class="leftAlign">${userid}</td>
+									<td class="leftAlign">${userid}</td>
 								</tr>
 								<tr>
-									<td>
+									<td style="font-family: 돋음; font-size: 12" height="16">
 										<div align="center">카테고리</div>
 									</td>
-									<td colspan="4" class="leftAlign">${board.boardName}</td>
+									<td class="leftAlign">${board.boardName}</td>
 								</tr>
 								<tr>
-									<td>
+									<td style="font-family: 돋음; font-size: 12" height="16">
 										<div align="center">제 목</div>
 									</td>
-									<td colspan="4" class="leftAlign">
-										<input id="contentTitle" name="contentTitle" type="text" size="50"
+									<td class="leftAlign">
+										<input name="contentTitle" type="text" size="50"
 										maxlength="100" style="width:100%;" value="Re: ${board.contentTitle}" />
 									</td>
 								</tr>
 								<tr>
-									<td class="name">
+									<td class="name" style="font-family: 돋음; font-size: 12">
 										<div align="center">내 용</div>
 									</td>
-									<td colspan="4" class="leftAlign">
-										<textarea id="summernote" name="content"></textarea>
+									<td class="leftAlign">
+									<textarea id="summernote" name="content"></textarea>
 									</td>
 								</tr>
 								<tr>
 									<td style="font-family: 돋음; font-size: 12">
 										<div align="center">파일 첨부</div>
 									</td>
-									<td colspan="4" class="leftAlign"><input name="filename" type="file" /></td>
+									<td><input name="filename" type="file" /></td>
 									
 								</tr>
 								<!-- <tr>
@@ -118,16 +117,14 @@
 								</tr> -->
 
 								<tr bgcolor="cccccc">
-									<td colspan="5" style="height: 1px;"></td>
+									<td colspan="2" style="height: 1px;"></td>
 								</tr>
 								<tr>
-									<td colspan="5">&nbsp;</td>
+									<td colspan="2">&nbsp;</td>
 								</tr>
 
 								<tr align="center" valign="middle">
-									<td colspan="5">
-										<input type="submit" value="등록">
-										<!-- <a href="javascript:replyboard()">[등록]</a>&nbsp;&nbsp; --> 
+									<td colspan="5"><a href="javascript:replyboard()">[등록]</a>&nbsp;&nbsp;
 										<a href="javascript:history.go(-1)">[뒤로]</a></td>
 								</tr>
 
