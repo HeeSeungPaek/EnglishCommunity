@@ -3,6 +3,7 @@ package kr.co.engcom.dto;
 import java.sql.Date;
 
 public class BoardDto {
+	private int rownum; 		//일반게시판의 글번호를 담당
 	private int contentNumber;	//글번호
 	private String id;			//아이디
 	private String contentTitle;//글제목
@@ -18,7 +19,12 @@ public class BoardDto {
 	private String boardName;	//게시판 이름
 	private String reportingDate;	//작성일
 	
-	
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	public int getContentNumber() {
 		return contentNumber;
 	}
@@ -73,7 +79,6 @@ public class BoardDto {
 	public void setStep(int step) {
 		this.step = step;
 	}
-
 	public int getReplyNumber() {
 		return replyNumber;
 	}
@@ -104,6 +109,9 @@ public class BoardDto {
 	public void setReportingDate(String reportingDate) {
 		this.reportingDate = reportingDate;
 	}
+	
+	
+	
 	
 
 	
