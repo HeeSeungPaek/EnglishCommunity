@@ -1,5 +1,4 @@
 /*left 메뉴*/
-const body = document.getElementsByTagName('body')[0]
 
 function setCookie(cname, cvalue, exdays) {
   var d = new Date()
