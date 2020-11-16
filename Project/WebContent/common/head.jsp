@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="assets/css/sub_style.css">
 <link rel="stylesheet" type="text/css" href="assets/css/login_style.css">
-<link rel="stylesheet" type="text/css" href="assets/css/jaegoo.css">
+<link rel="stylesheet" type="text/css" href="assets/css/board.css">
 <link rel="stylesheet" type="text/css" href="assets/css/today_style.css">
 <!-- <link rel="stylesheet" type="text/css" href="assets/css/canvas_style.css"> -->
 

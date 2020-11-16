@@ -17,6 +17,7 @@
 	
 	
 	<form action="TimeLineUpdate.tc" method="post" name="timeform" style="width:100%">
+	<input name="timeLineNumber" type="hidden" value="${timeline.timeLineNumber}" id="timeLineNumber" readonly /></td>
 		<input name="content_eng" type="text" value="" id="content_eng" class="today-input-en" placeholder="${timeline.timeLineNumber}번글의 수정 할 영문을 입력해 주세요"></input>
 		<input name="content_kor" type="text" value="" id="content_kor" class="today-input-ko" placeholder="${timeline.timeLineNumber}번글의 수정 할 한글을 입력해 주세요"/>
 		<!-- <input name="timelinenumber" type="text" value="" id="timelinenumber"/> -->
