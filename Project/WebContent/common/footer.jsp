@@ -10,6 +10,4 @@
 		<span class="bar">｜</span><span class="footer-bold">© ENGcom.</span>
 	</div>
 </div>
-<!-- 파파고 -->
-<script type="text/javascript" src="assets/js/papago.js"></script>
 <!--footer-->

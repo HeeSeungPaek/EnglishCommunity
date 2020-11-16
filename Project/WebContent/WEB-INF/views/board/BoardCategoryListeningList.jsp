@@ -20,7 +20,8 @@
 			<div class="col-13 col-m-12 col-sm-12">
 				<div class="card">
 					<div class="card-header">
-						<h1>전체 게시판</h1>
+						<h1>Listening 게시판</h1>
+							
 						<i class="fas fa-ellipsis-h"></i>
 					</div>
 					<div class="card-content">
@@ -75,7 +76,7 @@
 													[이전]&nbsp;
 												</c:when>
 												<c:otherwise>
-													<a href="./BoardList.bo?page=${page-1}">[이전]</a>&nbsp;
+													<a href="./BoardList_Listening.cate?page=${page-1}">[이전]</a>&nbsp;
 												</c:otherwise>
 											</c:choose>
 											
@@ -85,7 +86,7 @@
 														[${a}]
 													</c:when>
 													<c:otherwise>
-														<a href="./BoardList.bo?page=${a}">[${a}]</a>
+														<a href="./BoardList_Listening.cate?page=${a}">[${a}]</a>
 														
 													</c:otherwise>
 												</c:choose>
@@ -96,7 +97,7 @@
 													&nbsp;[다음]
 												</c:when>
 												<c:otherwise>
-													&nbsp;<a href="./BoardList.bo?page=${page+1}">[다음]</a>
+													&nbsp;<a href="./BoardList_Listening.cate?page=${page+1}">[다음]</a>
 												</c:otherwise>
 											</c:choose>
 										</td>
