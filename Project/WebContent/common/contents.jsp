@@ -19,7 +19,7 @@
 								<ul>
 									<li class="today-link"><a href="#" class="fas fa-pencil-alt" id="contentWrite">&nbsp&nbsp글쓰기</i></a></li>
 									<li class="today-link"><a href="#" class="fas fa-clipboard-list" id="contentList">&nbsp&nbsp목록보기</a></li>
-									<li class="today-link"><a href="#" class="fas fa-clipboard-list" id="contentMain">&nbsp&nbsp돌아가기</a></li>
+									<li class="today-link"><a href="#" class="fas fa-reply" id="contentMain">&nbsp&nbsp돌아가기</a></li>
 								</ul>
 							</div>							
 						</div>
@@ -154,6 +154,25 @@
 				</div>
 				</div>
 			</div>
+
+		</div>
+		<!-- //통계 -->
+	</div>
+	
+	<div class="row">
+		<!-- 날씨 -->
+		<div class="col-4 col-m-12 col-sm-12">
+			<div class="card">
+				<div class="card-header">
+					<h1>날씨</h1>
+					<i class="fas fa-ellipsis-h"></i>
+				</div>
+	
+				<div class="card-content">
+				</div>
+				</div>
+			</div>
+
 			<!-- //날씨 -->
 			
 			<!-- 오늘의 단어퀴즈 -->
