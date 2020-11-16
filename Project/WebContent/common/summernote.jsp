@@ -15,24 +15,28 @@
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="assets/css/sub_style.css">
 <link rel="stylesheet" type="text/css" href="assets/css/login_style.css">
-<link rel="stylesheet" type="text/css" href="assets/css/jaegoo.css">
+<link rel="stylesheet" type="text/css" href="assets/css/board.css">
 
 <!-- sweetAlert CDN -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<!-- <!-- Jquery CDN -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+ <!-- Jquery CDN -->
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"
 	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-	crossorigin="anonymous"></script> -->
-	
+	crossorigin="anonymous"></script>
+
+
 <!-- 로그인 및 회원가입 유효성 검사 -->
 <script type="text/javascript" src="assets/js/SignUpCheck.js"></script>
-
-<!-- include libraries(jQuery, bootstrap) -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- 게시판 글쓰기 유효성 검사 -->
+<script type="text/javascript" src="assets/js/BoardWriteCheck.js"></script>
 
 <!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" 
+	crossorigin="anonymous"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+

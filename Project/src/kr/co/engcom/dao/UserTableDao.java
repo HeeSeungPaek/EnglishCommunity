@@ -3,15 +3,12 @@ package kr.co.engcom.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import kr.co.engcom.dto.UserTable;
-import kr.co.engcom.utils.ConnectionHelper;
-import kr.co.engcom.utils.DB_Close;
 
 public class UserTableDao {
 	private Connection conn = null;
@@ -31,38 +28,7 @@ public class UserTableDao {
 			System.out.println("UserDAO JNDI 오류 : " + e.getMessage());
 		}
 	}
-
-	public int getCMUserListCount() {
-
-		Connection conn = ConnectionHelper.getConnection("oracle"); // 객체 얻기
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		int x = 0;
-
-		try {
-			pstmt = conn.prepareStatement("select count(*) from usertable");
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				x = rs.getInt(1);
-			}
-		} catch (Exception ex) {
-			System.out.println("getListCount 에러: " + ex);
-		} finally {
-			if (rs != null)
-				DB_Close.close(rs);
-			if (pstmt != null)
-				DB_Close.close(pstmt);
-			if (conn != null)
-				try {
-					conn.close();
-				} catch (SQLException ex) {
-				}
-		}
-		return x;
-	}
-
+	
 	public UserTable isExist(String id) {
 		UserTable dto = null;
 
@@ -92,17 +58,17 @@ public class UserTableDao {
 		}
 		return dto;
 	}
-
-	// 회원가입 시
+	
+	// 회원가입 시 
 	public int insertAccount(UserTable dto) {
 		int row = 0;
 
 		try {
 			conn = ds.getConnection();
-
+			
 			String query = "insert into usertable(id, pwd, birth, email, usercode) values(?,?,?,?,?)";
 			pstmt = conn.prepareStatement(query);
-
+			
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPwd());
 			pstmt.setDate(3, dto.getBirth());
@@ -110,7 +76,7 @@ public class UserTableDao {
 			pstmt.setInt(5, dto.getUsercode());
 			row = pstmt.executeUpdate();
 		} catch (Exception e) {
-
+		
 			e.printStackTrace();
 			System.out.println("INSERT 작업 도중 SQLException 발생 : " + e.getMessage());
 		} finally {
@@ -118,15 +84,15 @@ public class UserTableDao {
 		}
 		return row;
 	}
-
+	
 	// id 중복 유무 확인하는 함수
 	public String hasId(String id) {
-
+		
 		String idCheck = "";
-
+	
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		
 		try {
 			conn = ds.getConnection();
 
@@ -138,7 +104,7 @@ public class UserTableDao {
 
 			if (rs.next()) {
 				idCheck = "true";
-			} else {
+			}else {
 				idCheck = "false";
 			}
 
@@ -148,12 +114,11 @@ public class UserTableDao {
 		} finally {
 			closeDB(rs, pstmt, conn);
 		}
-
+		
 		return idCheck;
 	}
-
-	// ------------------------- Connection 및 자원 반환 시 closeDB()
-	// -------------------------
+	
+	// ------------------------- Connection 및 자원 반환 시 closeDB() -------------------------
 	private void closeDB(ResultSet rs, PreparedStatement pstmt, Connection conn) {
 		if (rs != null) {
 			try {
@@ -199,5 +164,5 @@ public class UserTableDao {
 			}
 		}
 	}
-
+	
 }
