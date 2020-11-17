@@ -10,35 +10,43 @@
 	function addboard() {
 		boardform.submit();
 	}
-	$(function(){
-	    $('#summernote').summernote({
-	        placeholder: '내용을 입력하세요',
-	        tabsize: 2,
-	        height: 120,
-	        toolbar: [
-					['style', ['style']
-				],
-				['font', 
-					['bold', 'underline', 'clear']
-				],
-		        ['color', 
-		        	['color']
-		        ],
-		        ['para', 
-		        	['ul', 'ol', 'paragraph']
-		        ],
-		        ['table', 
-		        	['table']
-		        ],
-		        ['insert', 
-		        	['link', 'picture', 'video']
-		        ],
-		        ['view', 
-		        	['fullscreen', 'codeview', 'help']
-		        ]
-	        ]
-	      });
+    $(document).ready(function() {
+        $('#summernote').summernote({ // summernote를 사용하기 위한 선언
+            height: 400,
+			callbacks: { // 콜백을 사용
+                // 이미지를 업로드할 경우 이벤트를 발생
+			    onImageUpload: function(files, editor, welEditable) {
+				    sendFile(files[0], this);
+				}
+			}
+		});
 	});
+
+    
+    /* summernote에서 이미지 업로드시 실행할 함수 */
+ 	function sendFile(file, editor) {
+        // 파일 전송을 위한 폼생성
+ 		data = new FormData();
+ 	    data.append("uploadFile", file);
+ 	    $.ajax({
+ 	        data : data,
+ 	        type : "POST",
+ 	      	enctype: 'multipart/form-data',
+ 	        url : "./summernote_imageUpload.jsp",
+ 	        cache : false,
+ 	        contentType : false,
+ 	        processData : false,
+ 	        success : function(data) { // 처리가 성공할 경우
+                // 에디터에 이미지 출력
+ 	        	$(editor).summernote('editor.insertImage', data.url);
+ 	        	//$('#summernote').append('<img src="'+data.url+'"/>');
+ 	        },
+ 	  		error:function(request,status,error){
+ 		    	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+ 		   }
+
+ 	    });
+ 	}
 </script>
 
 
@@ -64,20 +72,20 @@
 					<div class="card-content">
 
 						<form action="./BoardModifyService.bo" method="post"
-							enctype="multipart/form-data" name="boardform">
+							enctype="multipart/form-data" id="boardform" name="boardform">
 							<input type="hidden" name="id" value="${userid}">
 							<input type="hidden" name="contentNumber" value="${board.contentNumber}">
 							<table>
 							
 								<tr>
-									<td style="font-family: 돋음; font-size: 12" height="16">
+									<td>
 										<div align="center">글쓴이</div>
 									</td>
-									<td style="text-align:left; padding-left:20px;">${userid}</td>
+									<td class="leftAlign">${userid}</td>
 								</tr>
 
 								<tr>
-									<td style="font-family: 돋음; font-size: 12" height="16">
+									<td>
 										<div align="center">게시판 종류</div>
 									</td>
 									<td class="leftAlign">
@@ -90,14 +98,14 @@
 									</td>
 								</tr>
 								<tr>
-									<td style="font-family: 돋음; font-size: 12" height="16">
+									<td>
 										<div align="center">제 목</div>
 									</td>
-									<td><input name="contentTitle" type="text" size="50"
+									<td><input id="contentTitle" name="contentTitle" type="text" size="50"
 										maxlength="100" value="${board.contentTitle}" style="width:100%;" /></td>
 								</tr>
 								<tr>
-									<td style="font-family: 돋음; font-size: 12">
+									<td>
 										<div align="center">내 용</div>
 									</td>
 									<td style="text-align:left;">
@@ -105,10 +113,10 @@
 									</td>
 								</tr>
 								<tr>
-									<td style="font-family: 돋음; font-size: 12">
+									<td>
 										<div align="center">파일 첨부</div>
 									</td>
-									<td class="leftAlign" style="font-family: 돋음; font-size: 12">
+									<td class="leftAlign">
 										<input name="filename" type="file" />
 										<c:choose>
 											<c:when test="${board.filename != null}">
@@ -128,8 +136,10 @@
 									<td colspan="2">&nbsp;</td>
 								</tr>
 								<tr align="center" valign="middle">
-									<td colspan="5"><a href="javascript:addboard()">[수정]</a>&nbsp;&nbsp;
-										<a href="javascript:history.go(-1)">[뒤로]</a></td>
+									<td colspan="5">
+									<input type="submit" value="등록">
+									<!-- <a href="javascript:addboard()">[수정]</a>&nbsp;&nbsp; -->
+									<button type="button" onclick="javascript:history.go(-1)">뒤로</button>
 								</tr>
 							</table>
 						</form>

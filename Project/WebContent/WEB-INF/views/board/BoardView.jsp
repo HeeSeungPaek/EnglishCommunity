@@ -34,27 +34,24 @@
 						<i class="fas fa-ellipsis-h"></i>
 					</div>
 					<div class="card-content">
-						<table>
+						<table style="word-break:break-all; table-layout:fixed;">
 							<tbody>
-								<tr align="center" valign="middle">
-									<td colspan="5"></td>
-								</tr>
 								<tr>
 									<td>
 										<div>작성자</div>
 									</td>
-									<td class="leftAlign">${board.id}</td>
+									<td colspan="4" class="leftAlign">${board.id}</td>
 								</tr>
 								<tr>
 									<td>카테고리</td>
-									<td class="leftAlign">${board.boardName}</td>
+									<td colspan="4" class="leftAlign">${board.boardName}</td>
 								</tr>
 								<tr>
 									<td>
 										<div>제 목</div>
 									</td>
 
-									<td class="leftAlign">${board.contentTitle}</td>
+									<td colspan="4" class="leftAlign">${board.contentTitle}</td>
 								</tr>
 
 
@@ -63,9 +60,8 @@
 									<td>
 										<div>내 용</div>
 									</td>
-									<td style="font-family: 돋음; font-size: 12">
-										<table border=2px style="border-color: #eeeeee;" width=490
-											height=250>
+									<td colspan="4">
+										<table border=2px style="border-color: #eeeeee; width:100%;">
 											<tr>
 												<td class="leftAlign" valign=top style="font-family: 돋음;">
 													${board.content}</td>
@@ -77,7 +73,7 @@
 									<td style="font-family: 돋음; font-size: 12">
 										<div align="center">첨부파일</div>
 									</td>
-									<td class="leftAlign" style="font-family: 돋음; font-size: 12">
+									<td colspan="4" class="leftAlign" style="font-family: 돋음; font-size: 12">
 									<c:choose>
 										<c:when test="${board.filename != null}">
 											<a href="download.jsp?file_name=${board.filename}">
@@ -86,19 +82,19 @@
 									</c:choose></td>
 								</tr>
 								<tr bgcolor="cccccc">
-									<td colspan="2" style="height: 1px;"></td>
+									<td colspan="5" style="height: 1px;"></td>
 								</tr>
 								<tr>
-									<td colspan="2">&nbsp;</td>
+									<td colspan="5">&nbsp;</td>
 								</tr>
 								<tr align="center" valign="middle">
 									<td colspan="5"><font size=2> 
 									<c:if test="${not empty sessionScope.userid}">
-										<a href="./BoardReplyView.bo?num=${board.contentNumber}">[답변]</a>&nbsp;&nbsp; 
-										<a href="./BoardModify.bo?num=${board.contentNumber}"> [수정]</a>&nbsp;&nbsp;
-										<a href="./BoardDeleteService.bo?num=${board.contentNumber}">[삭제]</a>&nbsp;&nbsp;
+										<a href="./BoardReplyView.bo?num=${board.contentNumber}"><button type="button">답변</button></a>
+										<a href="./BoardModify.bo?num=${board.contentNumber}"><button type="button">수정</button></a>
+										<a href="./BoardDeleteService.bo?num=${board.contentNumber}"><button type="button">삭제</button></a>
 									</c:if> 
-										<a href="./BoardList.bo">[목록]</a>&nbsp;&nbsp;
+										<a href="./BoardList.bo"><button type="button">목록</button></a>
 									</font></td>
 								</tr>
 							</tbody>

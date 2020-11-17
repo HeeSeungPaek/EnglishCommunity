@@ -11,17 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.engcom.action.Action;
 import kr.co.engcom.action.ActionForward;
-import kr.co.engcom.service.TimeLineAddService;
-import kr.co.engcom.service.TimeLineDeleteService;
-import kr.co.engcom.service.TimeLineEditService;
-import kr.co.engcom.service.TimeLineListMainService;
-import kr.co.engcom.service.TimeLineListService;
-import kr.co.engcom.service.TimeLineUpdateService;
-import kr.co.engcom.service.papago;
-
-
-
-
+import kr.co.engcom.ajax.papago;
+import kr.co.engcom.service.timeline.TimeLineAddService;
+import kr.co.engcom.service.timeline.TimeLineDeleteService;
+import kr.co.engcom.service.timeline.TimeLineEditService;
+import kr.co.engcom.service.timeline.TimeLineListMainService;
+import kr.co.engcom.service.timeline.TimeLineListService;
+import kr.co.engcom.service.timeline.TimeLineUpdateService;
 
 @WebServlet("*.tc")
 public class TimeLineController extends HttpServlet implements javax.servlet.Servlet{

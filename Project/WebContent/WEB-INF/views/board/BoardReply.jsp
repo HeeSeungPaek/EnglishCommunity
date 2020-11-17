@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+s<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -11,35 +11,43 @@
 	function replyboard() {
 		boardform.submit();
 	}
-	$(function(){
-	    $('#summernote').summernote({
-	        placeholder: '내용을 입력하세요',
-	        tabsize: 2,
-	        height: 120,
-	        toolbar: [
-					['style', ['style']
-				],
-				['font', 
-					['bold', 'underline', 'clear']
-				],
-		        ['color', 
-		        	['color']
-		        ],
-		        ['para', 
-		        	['ul', 'ol', 'paragraph']
-		        ],
-		        ['table', 
-		        	['table']
-		        ],
-		        ['insert', 
-		        	['link', 'picture', 'video']
-		        ],
-		        ['view', 
-		        	['fullscreen', 'codeview', 'help']
-		        ]
-	        ]
-	      });
+    $(document).ready(function() {
+        $('#summernote').summernote({ // summernote를 사용하기 위한 선언
+            height: 400,
+			callbacks: { // 콜백을 사용
+                // 이미지를 업로드할 경우 이벤트를 발생
+			    onImageUpload: function(files, editor, welEditable) {
+				    sendFile(files[0], this);
+				}
+			}
+		});
 	});
+
+    
+    /* summernote에서 이미지 업로드시 실행할 함수 */
+ 	function sendFile(file, editor) {
+        // 파일 전송을 위한 폼생성
+ 		data = new FormData();
+ 	    data.append("uploadFile", file);
+ 	    $.ajax({
+ 	        data : data,
+ 	        type : "POST",
+ 	      	enctype: 'multipart/form-data',
+ 	        url : "./summernote_imageUpload.jsp",
+ 	        cache : false,
+ 	        contentType : false,
+ 	        processData : false,
+ 	        success : function(data) { // 처리가 성공할 경우
+                // 에디터에 이미지 출력
+ 	        	$(editor).summernote('editor.insertImage', data.url);
+ 	        	//$('#summernote').append('<img src="'+data.url+'"/>');
+ 	        },
+ 	  		error:function(request,status,error){
+ 		    	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+ 		   }
+
+ 	    });
+ 	}
 </script>
 </head>
 
@@ -61,7 +69,8 @@
 					</div>
 					<div class="card-content">
 						<!-- 게시판 답변 -->
-						<form action="./BoardReplyService.bo" method="post" name="boardform">
+						<form action="./BoardReplyService.bo" method="post" 
+							enctype="multipart/form-data" id="boardform" name="boardform">
 							<input type="hidden" name="contentNumber" value="${board.contentNumber}">
 							<input type="hidden" name="boardName" value="${board.boardName}"> 
 							<input type="hidden" name="refer" value="${board.refer}">
@@ -69,44 +78,44 @@
 							<input type="hidden" name="step" value="${board.step}"> 
 							<input type="hidden" name="id" value="${userid}">
 
-							<table cellpadding="0" cellspacing="0">
+							<table style="word-break:break-all; table-layout:fixed;">
 								<tr align="center" valign="middle">
 									<td colspan="5"></td>
 								</tr>
 								<tr>
-									<td style="font-family: 돋음; font-size: 12" height="16">
+									<td>
 										<div align="center">글쓴이</div>
 									</td>
-									<td class="leftAlign">${userid}</td>
+									<td colspan="4" class="leftAlign">${userid}</td>
 								</tr>
 								<tr>
-									<td style="font-family: 돋음; font-size: 12" height="16">
+									<td>
 										<div align="center">카테고리</div>
 									</td>
-									<td class="leftAlign">${board.boardName}</td>
+									<td colspan="4" class="leftAlign">${board.boardName}</td>
 								</tr>
 								<tr>
-									<td style="font-family: 돋음; font-size: 12" height="16">
+									<td>
 										<div align="center">제 목</div>
 									</td>
-									<td class="leftAlign">
-										<input name="contentTitle" type="text" size="50"
+									<td colspan="4" class="leftAlign">
+										<input id="contentTitle" name="contentTitle" type="text" size="50"
 										maxlength="100" style="width:100%;" value="Re: ${board.contentTitle}" />
 									</td>
 								</tr>
 								<tr>
-									<td class="name" style="font-family: 돋음; font-size: 12">
+									<td class="name">
 										<div align="center">내 용</div>
 									</td>
-									<td class="leftAlign">
-									<textarea id="summernote" name="content"></textarea>
+									<td colspan="4" class="leftAlign">
+										<textarea id="summernote" name="content"></textarea>
 									</td>
 								</tr>
 								<tr>
 									<td style="font-family: 돋음; font-size: 12">
 										<div align="center">파일 첨부</div>
 									</td>
-									<td><input name="filename" type="file" /></td>
+									<td colspan="4" class="leftAlign"><input name="filename" type="file" /></td>
 									
 								</tr>
 								<!-- <tr>
@@ -117,15 +126,17 @@
 								</tr> -->
 
 								<tr bgcolor="cccccc">
-									<td colspan="2" style="height: 1px;"></td>
+									<td colspan="5" style="height: 1px;"></td>
 								</tr>
 								<tr>
-									<td colspan="2">&nbsp;</td>
+									<td colspan="5">&nbsp;</td>
 								</tr>
 
 								<tr align="center" valign="middle">
-									<td colspan="5"><a href="javascript:replyboard()">[등록]</a>&nbsp;&nbsp;
-										<a href="javascript:history.go(-1)">[뒤로]</a></td>
+									<td colspan="5">
+										<input type="submit" value="등록">
+										<!-- <a href="javascript:replyboard()">[등록]</a>&nbsp;&nbsp; --> 
+										<button type="button" onclick="javascript:history.go(-1)">뒤로</button>
 								</tr>
 
 							</table>
