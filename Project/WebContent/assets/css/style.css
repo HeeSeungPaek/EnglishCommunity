@@ -131,7 +131,7 @@ h1 {
 #papagobutton{
 	position: absolute;
 	top: 50%;
-	right: 3%;
+	left: 45%;
 	transform: translateY(-50%);
 	color: #9a5fcb;
 	cursor: pointer;
@@ -325,11 +325,7 @@ h1 {
 	padding: 20px;
 }
 /*//통계 추가 11.17 오정은*/
-/*통계*/
-.reading {background: linear-gradient(to right, #ff8db8, #ed4785);}
-.grammar {background: linear-gradient(to right, #8961c1, #5446c1);}
-.conversation {background: linear-gradient(to right, #4bc4f3, #6793da);}
-.word {background: linear-gradient(to right, #f3be4c, #f2825a);}
+
 /*//컨텐츠*/
 
 /* 최대 600px까지 적용 */

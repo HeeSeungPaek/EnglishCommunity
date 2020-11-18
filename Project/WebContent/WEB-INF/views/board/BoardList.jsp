@@ -24,44 +24,56 @@
 						<i class="fas fa-ellipsis-h"></i>
 					</div>
 					<div class="card-content">
-						<table>
-							<thead>
-								<tr>
-									<th>번호</th>
-									<th>게시판</th>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>작성일</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="board" items="${requestScope.boardlist}"
-									varStatus="status">
+						<c:set var="userid" value="${sessionScope.userid}"/>
+							<c:if test="${not empty sessionScope.userid}">
+								<c:if test="${userid=='admin'}">
+									<span class="board-total">글 개수 : ${listcount}&nbsp;&nbsp;</span>
+								</c:if>
+								<!-- 버튼 추가 11.18  오정은 -->
+								<button type="button" class="write-btn" onclick="location.href='BoardWrite.bo'" style="background-color: #9161d2;">
+									<i class="fas fa-pencil-alt">&nbsp&nbsp글쓰기</i>
+								</button>
+								<!-- 버튼 추가 11.18  오정은 -->
+							</c:if>
+						<div class="main-board">
+							<table>
+								<thead>
 									<tr>
-										<td>${board.contentNumber}</td>
-										<td>${board.boardName}</td>
-										
-										<td class="leftAlign">
-											<c:choose>
-												<c:when test="${board.depth != 0}">
-													<c:forEach var="depth" begin="0" end="${(board.depth)*2}">
-														&nbsp;
-													</c:forEach>
-														▶
-												</c:when>
-												<c:otherwise>
-														
-												</c:otherwise>
-											</c:choose>
-											<a href="./BoardDetailService.bo?num=${board.contentNumber}">
-												${board.contentTitle}
-											</a>
-										</td>
-										<td>${board.id}</td>
-										<td>${board.reportingDate}</td>
-										
-										
-																			</tr>
+										<th>번호</th>
+										<th>게시판</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>작성일</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="board" items="${requestScope.boardlist}"
+										varStatus="status">
+										<tr>
+											<td>${board.contentNumber}</td>
+											<td>${board.boardName}</td>
+											
+											<td class="leftAlign">
+												<c:choose>
+													<c:when test="${board.depth != 0}">
+														<c:forEach var="depth" begin="0" end="${(board.depth)*2}">
+															&nbsp;
+														</c:forEach>
+															▶
+													</c:when>
+													<c:otherwise>
+															
+													</c:otherwise>
+												</c:choose>
+												<a href="./BoardDetailService.bo?num=${board.contentNumber}">
+													${board.contentTitle}
+												</a>
+											</td>
+											<td>${board.id}</td>
+											<td>${board.reportingDate}</td>
+											
+											
+										</tr>
 									</c:forEach>
 										<c:set var="page" value="${requestScope.page}"/>
 										<c:set var="maxpage" value="${requestScope.maxpage}"/>
