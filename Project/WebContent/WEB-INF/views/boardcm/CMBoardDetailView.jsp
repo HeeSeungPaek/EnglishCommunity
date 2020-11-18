@@ -80,7 +80,7 @@ $(function(){
 </script>
 <jsp:include page="/common/head.jsp"></jsp:include>
 </head>
-<body class="wrap">
+<body>
 <jsp:include page="/common/top.jsp"></jsp:include>
 <jsp:include page="/common/left.jsp"></jsp:include>
 <jsp:include page="/common/login.jsp"></jsp:include>
@@ -107,21 +107,20 @@ $(function(){
 		seeya		붕어빵		2020-12-31 11:59	
 
  -->
- <div class="wrapper">
- <div class="row">
- <div>
- <div class="card">
- [글 번호]<%=board.getCMBoardNumber() %><br>
+<div class="wrapper">
+	<div class="row">
+		<div class="col-13 col-m-12 col-sm-12">
+			<div class="card">
+					<div class="card-header">
+						 [글 번호]<%=board.getCMBoardNumber() %><br>
  [글 제목]<%=board.getCMBoardSubject() %><br>
  [글 작성일]<%=board.getCMBoardDate() %><br>
  [작성자 ID]<%=board.getCMBoardId() %><br>
+					</div>
+					<div class="card-content">
  
- <img src = "<%=board.getCMBoardFile() %>" id = "img">
- </div>
- </div>
- <div class="col-6 col-m-6 col-sm-6">
- <div class="card">
- 
+ <img src = "<%=board.getCMBoardFile() %>" id = "img" class="canvas_wrap">
+
  <!-- 현재 글에 정답이 있으면 댓글 작성 가능 없으면 불가능 -->
  <c:set var = "check" value = "<%=check%>"/>
  <c:if test="${!check}">
@@ -130,7 +129,7 @@ $(function(){
  		 <!-- 댓글 정보를 보내기 위한 hidden -->
  		 <input type = "hidden" name ="CMReplyId" value="<%=msg%>">
  		 <input type = "hidden" name ="CMBoardNumber" value="<%=board.getCMBoardNumber()%>">
- 		 <input type = "submit" value = "작성">
+ 		 <input type = "submit" value = "작성"></span>
  </form>
  </c:if>
  
@@ -146,18 +145,8 @@ $(function(){
  </c:if>
  <hr>
  <br>
+ 
  <table id ="tb">
- <tr>
- <td>
- [작성자]
- </td>
- <td>
- [내용]      
- </td>
- <td>
- [작성 시간]
- </td>
- </tr>
  <!-- 여기서 for 문 -->
  <c:set var ="replyList" value="<%=reply%>"/>
  <c:forEach var="list" items="<%=reply%>" varStatus="status" begin="0" end="14" step="1">
@@ -215,6 +204,8 @@ $(function(){
  </div>
  </div>
  </div>
+ </div>
+
 <jsp:include page="/common/footer.jsp"></jsp:include>	
 <jsp:include page="/common/script.jsp"></jsp:include>	 
 </body>

@@ -6,11 +6,14 @@
 <html lang="ko">
 <head>
 <jsp:include page="/common/summernote.jsp"></jsp:include>
-<script language="javascript">
+
+<script>
+
 	function addboard() {
 		boardform.submit();
 	}
-	$(function(){
+	
+    $(document).ready(function() {
 	    $('#summernote').summernote({
 	        placeholder: '내용을 입력하세요',
 	        tabsize: 2,
@@ -38,18 +41,17 @@
 		        ]
 	        ]
 	      });
-	});
+
+    });
+
+
 </script>
-
-
-
 </head>
-
-<body class="wrap">
+<body>
 	<jsp:include page="/common/top.jsp"></jsp:include>
 	<jsp:include page="/common/left.jsp"></jsp:include>
 	<jsp:include page="/common/login.jsp"></jsp:include>
-	<c:set var="userid" value="${sessionScope.userid}"/>
+	<c:set var="userid" value="${sessionScope.userid}" />
 	<!-- 컨텐츠 -->
 	<div class="wrapper">
 		<!-- 전체 게시판 -->
@@ -57,65 +59,46 @@
 			<div class="col-13 col-m-12 col-sm-12">
 				<div class="card">
 					<div class="card-header">
-						<h1>글쓰기</h1>
-						<i class="fas fa-ellipsis-h"></i>
+						<h1>게시판 글쓰기</h1>
 					</div>
 					<div class="card-content">
-
 						<form action="./BoardAddService.bo" method="post"
-							enctype="multipart/form-data" name="boardform">
+							enctype="multipart/form-data" id="boardform" name="boardform">
 							<input type="hidden" name="id" value="${userid}">
-							<table>
-
-								<tr>
-									<td style="font-family: 돋음; font-size: 12" height="16">
-										<div align="center">글쓴이</div>
-									</td>
-									<td class="leftAlign">${userid}</td>
-								</tr>
-								<tr>
-									<td style="font-family: 돋음; font-size: 12" height="16">
-										<div align="center">카테고리</div>
-									</td>
-									<td class="leftAlign">
-										<select id="english" name="boardName">
-											<option value="Grammar">Grammar</option>
-											<option value="Reading">Reading</option>
-											<option value="Listening">Listening</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td style="font-family: 돋음; font-size: 12" height="16">
-										<div align="center">제 목</div>
-									</td>
-									<td><input name="contentTitle" type="text" size="50"
-										maxlength="100" value="" style="width:100%;" /></td>
-								</tr>
-								<tr>
-									<td style="font-family: 돋음; font-size: 12">
-										<div align="center">내 용</div>
-									</td>
-									<td style="text-align:left;">
-									<textarea id="summernote" name="content"></textarea>
-								</tr>
-								<tr>
-									<td style="font-family: 돋음; font-size: 12">
-										<div align="center">파일 첨부</div>
-									</td>
-									<td><input name="filename" type="file" /></td>
-								</tr>
-								<tr bgcolor="cccccc">
-									<td colspan="2" style="height: 1px;"></td>
-								</tr>
-								<tr>
-									<td colspan="2">&nbsp;</td>
-								</tr>
-								<tr align="center" valign="middle">
-									<td colspan="5"><a href="javascript:addboard()">[등록]</a>&nbsp;&nbsp;
-										<a href="javascript:history.go(-1)">[뒤로]</a></td>
-								</tr>
-							</table>
+							<!-- 11.18 수정 및 추가 오정은 -->
+							<!-- 게시판  선택 -->
+							<select id="english" name="boardName" class="board-select">
+								<option value="" selected disabled hidden>게시판을 선택해주세요</option>
+								<option value="Grammar">Grammar</option>
+								<option value="Reading">Reading</option>
+								<option value="Listening">Listening</option>
+							</select>
+							<!-- //게시판  선택 -->
+							
+							<!-- 제목 작성 -->
+							<input id="contentTitle" name="contentTitle" type="text" 
+							class="board-title" placeholder="제목을 입력해 주세요.">
+							<!-- //제목 작성 -->
+							
+							<!-- 내용 작성 -->
+							<textarea id="summernote" name="content"
+									style="resize: vertical;"></textarea>
+							<!-- 내용 작성 -->
+							
+							<!-- 이미지 업로드 -->
+							<div class="board-img">
+								<input name="filename" type="file"/>
+							</div>
+							<!-- 이미지 업로드 -->
+								
+							<!-- 버튼 -->
+							<div class="board-btns">
+								<button class="board-update" type="submit" value="등록">등록</button>
+								<!-- <a href="javascript:addboard()">[등록]</a>&nbsp;&nbsp; -->
+								<button class="board-back" onclick="location.href='javascript:history.go(-1)'">뒤로</button></a>
+							</div>
+							<!-- //버튼 -->
+							<!-- //11.18 수정 및 추가 오정은 -->
 						</form>
 					</div>
 				</div>
@@ -125,8 +108,7 @@
 		<!-- //컨텐츠 -->
 	</div>
 
-
-		<jsp:include page="/common/footer.jsp"></jsp:include>
-		<jsp:include page="/common/script.jsp"></jsp:include>
+	<jsp:include page="/common/footer.jsp"></jsp:include>
+	<jsp:include page="/common/script.jsp"></jsp:include>
 </body>
 </html>

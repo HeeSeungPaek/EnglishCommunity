@@ -28,12 +28,10 @@
 						
 						<c:when test="${status.first}"><input type="button" id="next" value="다음" style="float:right"></c:when>
 						</c:choose> --%>
-					<tr>										
-						<td><h3 style="margin:0px">${timeline.content_eng}</h3></td>
-					</tr>
-					<tr>
-						<td><b>${timeline.content_kor}</b></td>						
-					</tr>										
+					<!-- 11.17 오정은 수정 -->	
+						<h3 class="today-en">${timeline.content_eng}</h3>
+						<h3 class="today-ko">"${timeline.content_kor}"</h3>						
+					<!-- //11.17 오정은 수정 -->												
 					</c:if>				 	
 					</c:forEach>
 					

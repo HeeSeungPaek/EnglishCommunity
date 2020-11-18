@@ -31,7 +31,7 @@ public class BoardDao {
 		}
 	}
 	
-	
+	// SELECT count(*) FROM board WHERE boardname = 'Grammar';
 	// 글의 개수 구하기
 	// ListBoard.jsp
 	public int getListCount() {
@@ -55,7 +55,69 @@ public class BoardDao {
 		}
 		return rowcount;
 	}
-	
+	public int getGrammarListCount() {
+		// select count(*) from board
+		int rowcount = 0;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement("select count(*) from board WHERE boardname = 'Grammar'");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				rowcount = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			System.out.println("getListCount 에러: " + e.getMessage());
+		}finally {
+			DB_Close.close(rs);
+			DB_Close.close(pstmt);
+			DB_Close.close(conn);
+		}
+		return rowcount;
+	}
+	public int getReadingListCount() {
+		// select count(*) from board
+		int rowcount = 0;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement("select count(*) from board WHERE boardname = 'Reading'");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				rowcount = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			System.out.println("getListCount 에러: " + e.getMessage());
+		}finally {
+			DB_Close.close(rs);
+			DB_Close.close(pstmt);
+			DB_Close.close(conn);
+		}
+		return rowcount;
+	}
+	public int getListeningListCount() {
+		// select count(*) from board
+		int rowcount = 0;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement("select count(*) from board WHERE boardname = 'Listening'");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				rowcount = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			System.out.println("getListCount 에러: " + e.getMessage());
+		}finally {
+			DB_Close.close(rs);
+			DB_Close.close(pstmt);
+			DB_Close.close(conn);
+		}
+		return rowcount;
+	}
 	
 	// 글 목록 보기
 	// ListBoard.jsp
@@ -629,8 +691,8 @@ public class BoardDao {
 						 + "        FROM COMMENTTABLE)) " 
 						 + " WHERE RN >= ? and RN <= ? CONTENTNUMBER = ?";
 			
-			String query2 = "SELECT RN, COMMENTNUMBER, COMMENTCONTENT, CONTENTNUMBER, ID, REDATE FROM " + 
-					"(select ROWNUM AS RN, COMMENTNUMBER, COMMENTCONTENT, CONTENTNUMBER, ID, REDATE FROM COMMENTTABLE " + 
+			String query2 = "SELECT RN, COMMENTNUMBER, COMMENTCONTENT, CONTENTNUMBER, ID, REDATE, Update_Flag FROM " + 
+					"(select ROWNUM AS RN, COMMENTNUMBER, COMMENTCONTENT, CONTENTNUMBER, ID, REDATE, Update_Flag FROM COMMENTTABLE " + 
 					"WHERE CONTENTNUMBER = ? ORDER BY COMMENTNUMBER) " + 
 					"WHERE RN >= ? AND RN <= ?";
 
@@ -657,7 +719,7 @@ public class BoardDao {
 					cmt.setContentNumber(rs.getInt(4));
 					cmt.setId(rs.getString(5));
 					cmt.setRedate(rs.getDate(6));
-					
+					cmt.setUpdate_Flag(rs.getString(7));
 					commentList.add(cmt);
 				}
 			} catch (Exception e) {
@@ -672,6 +734,71 @@ public class BoardDao {
 			return commentList;
 		}
 
+		// 댓글 수정 시 함수
+		// 백희승
+		public int updateComment(String updateContent, int commentNumber) {
+			int rowcount = 0;
+			
+			String query = "UPDATE COMMENTTABLE"
+						 + "	SET COMMENTCONTENT = ?,"
+						 + "	UPDATE_FLAG='Y' "
+						 + " WHERE COMMENTNUMBER = ?";
+			
+			try {
+				conn = ds.getConnection();
+				pstmt = conn.prepareStatement(query);
+				
+				pstmt.setString(1, updateContent);
+				pstmt.setInt(2, commentNumber);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					rowcount += 1;
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("BoardDao > 댓글 수정 중 오류 발생 : " + e.getMessage());
+			} finally {
+				DB_Close.close(rs);
+				DB_Close.close(pstmt);
+				DB_Close.close(conn);
+			}
+			
+			return rowcount;
+		}
+		
+		// 댓글 수정 시 함수
+		// 백희승
+		public int deleteComment(int commentNumber) {
+			int rowcount = 0;
+			
+			String query = "DELETE FROM COMMENTTABLE WHERE COMMENTNUMBER = ?";
+			
+			try {
+				conn = ds.getConnection();
+				pstmt = conn.prepareStatement(query);
+						
+				pstmt.setInt(1, commentNumber);
+						
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					rowcount += 1;
+				}
+						
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("BoardDao > 댓글 삭제 중 오류 발생 : " + e.getMessage());
+			} finally {
+				DB_Close.close(rs);
+				DB_Close.close(pstmt);
+				DB_Close.close(conn);
+			}
+					
+			return rowcount;
+		}
 
 
 }

@@ -8,6 +8,7 @@ public class CommentTableDto {
    private int contentNumber;
    private String id;
    private Date redate;
+   private String update_Flag;
    
    public int getCommentNumber() {
       return commentNumber;
@@ -39,8 +40,12 @@ public class CommentTableDto {
    public void setRedate(Date redate) {
       this.redate = redate;
    }
-   
-   
+   public String getUpdate_Flag() {
+	      return update_Flag;
+   }
+   public void setUpdate_Flag(String update_Flag) {
+	  this.update_Flag = update_Flag;
+   }
    
 }
 

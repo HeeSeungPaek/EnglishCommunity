@@ -24,93 +24,100 @@
 						<i class="fas fa-ellipsis-h"></i>
 					</div>
 					<div class="card-content">
-						<table>
-							<thead>
-								<tr>
-									<th>번호</th>
-									<th>게시판</th>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>작성일</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="board" items="${requestScope.boardlist}"
-									varStatus="status">
+						<c:set var="userid" value="${sessionScope.userid}"/>
+							<c:if test="${not empty sessionScope.userid}">
+								<c:if test="${userid=='admin'}">
+									<span class="board-total">글 개수 : ${listcount}&nbsp;&nbsp;</span>
+								</c:if>
+								<!-- 버튼 추가 11.18  오정은 -->
+								<button type="button" class="write-btn" onclick="location.href='BoardWrite.bo'" style="background-color: #9161d2;">
+									<i class="fas fa-pencil-alt">&nbsp&nbsp글쓰기</i>
+								</button>
+								<!-- 버튼 추가 11.18  오정은 -->
+							</c:if>
+						<div class="main-board">
+							<table>
+								<thead>
 									<tr>
-										<td>${board.contentNumber}</td>
-										<td>${board.boardName}</td>
-										
-										<td class="leftAlign">
-											<c:choose>
-												<c:when test="${board.depth != 0}">
-													<c:forEach var="depth" begin="0" end="${(board.depth)*2}">
-														&nbsp;
-													</c:forEach>
-														▶
-												</c:when>
-												<c:otherwise>
-														
-												</c:otherwise>
-											</c:choose>
-											<a href="./BoardDetailService.bo?num=${board.contentNumber}">
-												${board.contentTitle}
-											</a>
-										</td>
-										<td>${board.id}</td>
-										<td>${board.reportingDate}</td>
-										
-										
+										<th>번호</th>
+										<th>게시판</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>작성일</th>
 									</tr>
-								</c:forEach>
-									<c:set var="page" value="${requestScope.page}"/>
-									<c:set var="maxpage" value="${requestScope.maxpage}"/>
-									<c:set var="startpage" value="${requestScope.startpage}"/>
-									<c:set var="endpage" value="${requestScope.endpage}"/>
-									<c:set var="listcount" value="${requestScope.listcount}"/>
-									<tr align=center height=20>
-										<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
-											<c:choose>
-												<c:when test="${page<=1}">
-													[이전]&nbsp;
-												</c:when>
-												<c:otherwise>
-													<a href="./BoardList.bo?page=${page-1}">[이전]</a>&nbsp;
-												</c:otherwise>
-											</c:choose>
+								</thead>
+								<tbody>
+									<c:forEach var="board" items="${requestScope.boardlist}"
+										varStatus="status">
+										<tr>
+											<td>${board.contentNumber}</td>
+											<td>${board.boardName}</td>
 											
-											<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+											<td class="leftAlign">
 												<c:choose>
-													<c:when test="${page==a}">
-														[${a}]
+													<c:when test="${board.depth != 0}">
+														<c:forEach var="depth" begin="0" end="${(board.depth)*2}">
+															&nbsp;
+														</c:forEach>
+															▶
 													</c:when>
 													<c:otherwise>
-														<a href="./BoardList.bo?page=${a}">[${a}]</a>
-														&nbsp;
+															
 													</c:otherwise>
 												</c:choose>
-											</c:forEach>
+												<a href="./BoardDetailService.bo?num=${board.contentNumber}">
+													${board.contentTitle}
+												</a>
+											</td>
+											<td>${board.id}</td>
+											<td>${board.reportingDate}</td>
 											
-											<c:choose>
-												<c:when test="${page>=maxpage}">
-													[다음]
-												</c:when>
-												<c:otherwise>
-													<a href="./BoardList.bo?page=${page+1}">[다음]</a>
-												</c:otherwise>
-											</c:choose>
-										</td>
-									</tr>
-								
-							</tbody>
-						</table>
-						<c:set var="userid" value="${sessionScope.userid}"/>
-						<c:if test="${not empty sessionScope.userid}">
-							<c:if test="${userid=='admin'}">
-								<div align=right>글 개수 : ${listcount}&nbsp;&nbsp;</div>
-							</c:if>
-								<div align=right><a href="BoardWrite.bo">글쓰기</a></div>
-						</c:if>
+											
+										</tr>
+									</c:forEach>
+										<c:set var="page" value="${requestScope.page}"/>
+										<c:set var="maxpage" value="${requestScope.maxpage}"/>
+										<c:set var="startpage" value="${requestScope.startpage}"/>
+										<c:set var="endpage" value="${requestScope.endpage}"/>
+										<c:set var="listcount" value="${requestScope.listcount}"/>
+										
+					
+								</tbody>
+																		<tr align=center height=20>
+											<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
+												<c:choose>
+													<c:when test="${page<=1}">
+														[이전]&nbsp;
+													</c:when>
+													<c:otherwise>
+														<a href="./BoardList.bo?page=${page-1}">[이전]</a>&nbsp;
+													</c:otherwise>
+												</c:choose>
+												
+												<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+													<c:choose>
+														<c:when test="${page==a}">
+															[${a}]
+														</c:when>
+														<c:otherwise>
+															<a href="./BoardList.bo?page=${a}">[${a}]</a>
+															
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+												
+												<c:choose>
+													<c:when test="${page>=maxpage}">
+														&nbsp;[다음]
+													</c:when>
+													<c:otherwise>
+														&nbsp;<a href="./BoardList.bo?page=${page+1}">[다음]</a>
+													</c:otherwise>
+												</c:choose>
+											</td>
+										</tr>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>

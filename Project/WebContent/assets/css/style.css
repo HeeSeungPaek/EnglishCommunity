@@ -107,25 +107,39 @@ h1 {
 }
 /* 번역기 11.14 추가 오정은*/
 .papago {
+	float:left;
 	position: relative;
 	margin: auto;
-	width: 40%;
+	width: 60%;
+}
+.hidden{
+	display:none;
 }
 .papago input {
+	float:left;
 	border: none;
 	padding: 12px 50px 12px 50px;
-	width: 100%;
+	width: 50%;
 	outline: none;
 	color: var(--main-color);
 	border-radius: 20px;
 }
+
 .papago-btn {
 	background-color: #fff;
 }
-.papago i {
+#papagobutton{
 	position: absolute;
 	top: 50%;
-	right: 20px;
+	left: 45%;
+	transform: translateY(-50%);
+	color: #9a5fcb;
+	cursor: pointer;
+}
+.search{
+	position: absolute;
+	top: 50%;
+	left: 95%;
 	transform: translateY(-50%);
 	color: #9a5fcb;
 	cursor: pointer;
@@ -271,10 +285,24 @@ h1 {
 	padding: 10px;
 }
 
-/*오늘의 회화*/
+/*오늘의 회화 추가 11.17 오정은*/
 .todayenglishko {
 	color: #8f9297;
 }
+.page-item {
+	marigin: 0 auto;
+}
+.today-en,
+.today-ko {
+	text-align: left;
+}
+.today-en {
+	color: #303c4c;
+}
+.today-ko {
+	color: #8f9297;
+}
+/*//오늘의 회화*/
 
 /* 카테고리 바로가기 11.14일 추가 오정은*/
 .diary {
@@ -306,11 +334,12 @@ h1 {
 }
 /* //카테고리 바로가기 */
 
-/*통계*/
-.reading {background: linear-gradient(to right, #ff8db8, #ed4785);}
-.grammar {background: linear-gradient(to right, #8961c1, #5446c1);}
-.conversation {background: linear-gradient(to right, #4bc4f3, #6793da);}
-.word {background: linear-gradient(to right, #f3be4c, #f2825a);}
+/*통계 추가 11.17 오정은*/
+#myChart {
+	padding: 20px;
+}
+/*//통계 추가 11.17 오정은*/
+
 /*//컨텐츠*/
 
 /* 최대 600px까지 적용 */
@@ -465,6 +494,9 @@ table th {
 @media screen and (max-width: 600px) { /*가로 사이즈가 600일 때 스크롤 생성*/
 	.main-board { overflow-x: scroll; }
 	.main-board { width: 650px; }
+	.papago {
+		display: none;
+	}
 }
 /*//전체 게시판*/
 
@@ -642,4 +674,31 @@ span.comment-date{
 .pagination-sm .page-item:last-child .page-link {
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem;
+}
+
+/* 타임라인 리스트 */
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td{
+  border: 1px solid #ddd;
+  padding: 8px;
+
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+.TimeLineContent{
+	width:100%
+}
+.number{
+	width:15px;
+}
+.edit{
+	width:70px;
 }

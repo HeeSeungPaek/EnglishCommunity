@@ -23,6 +23,7 @@
 	<c:set var="currpage" value="${requestScope.currpage}" />
 	<!-- //댓글 페이지 -->
 	
+	<!-- 11.18 수정 및 추가 오정은 -->
 	<!-- 컨텐츠 -->
 	<div class="wrapper">
 		<!-- 전체 게시판 -->
@@ -31,78 +32,41 @@
 				<div class="card">
 					<div class="card-header">
 						<h1>${board.boardName} 게시판</h1>
-						<i class="fas fa-ellipsis-h"></i>
 					</div>
 					<div class="card-content">
-						<table>
-							<tbody>
-								<tr align="center" valign="middle">
-									<td colspan="5"></td>
-								</tr>
-								<tr>
-									<td>
-										<div>작성자</div>
-									</td>
-									<td class="leftAlign">${board.id}</td>
-								</tr>
-								<tr>
-									<td>카테고리</td>
-									<td class="leftAlign">${board.boardName}</td>
-								</tr>
-								<tr>
-									<td>
-										<div>제 목</div>
-									</td>
-
-									<td class="leftAlign">${board.contentTitle}</td>
-								</tr>
-
-
-
-								<tr>
-									<td>
-										<div>내 용</div>
-									</td>
-									<td style="font-family: 돋음; font-size: 12">
-										<table border=2px style="border-color: #eeeeee;" width=490
-											height=250>
-											<tr>
-												<td class="leftAlign" valign=top style="font-family: 돋음;">
-													${board.content}</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td style="font-family: 돋음; font-size: 12">
-										<div align="center">첨부파일</div>
-									</td>
-									<td class="leftAlign" style="font-family: 돋음; font-size: 12">
+						<div class="board-confirm">
+						<h3>${board.boardName}</h3>
+						<h1>${board.contentTitle}</h1>
+						<h4>${board.id}</h4>
+						<hr>
+					</div>
+						
+						<div class="leftAlign" style="font-family: 돋음;">
+							${board.content}
+									<br>
+									<div class="board-img">
+										<div>첨부파일</div>
+									</div>
 									<c:choose>
 										<c:when test="${board.filename != null}">
 											<a href="download.jsp?file_name=${board.filename}">
 												${board.filename} </a>
 										</c:when>
-									</c:choose></td>
-								</tr>
-								<tr bgcolor="cccccc">
-									<td colspan="2" style="height: 1px;"></td>
-								</tr>
-								<tr>
-									<td colspan="2">&nbsp;</td>
-								</tr>
-								<tr align="center" valign="middle">
-									<td colspan="5"><font size=2> 
+									</c:choose></div>
+									<br>
+									<span class="board-list-btn">
 									<c:if test="${not empty sessionScope.userid}">
-										<a href="./BoardReplyView.bo?num=${board.contentNumber}">[답변]</a>&nbsp;&nbsp; 
-										<a href="./BoardModify.bo?num=${board.contentNumber}"> [수정]</a>&nbsp;&nbsp;
-										<a href="./BoardDeleteService.bo?num=${board.contentNumber}">[삭제]</a>&nbsp;&nbsp;
+										<!-- 답변, 수정, 삭제 -->
+										<button class="border-answer" onclick="location.href='./BoardReplyView.bo?num=${board.contentNumber}'">답변</button>
+										<button class="border-modify" onclick="location.href='./BoardModify.bo?num=${board.contentNumber}'">수정</button>
+										<button class="border-delete" onclick="location.href='./BoardDeleteService.bo?num=${board.contentNumber}'">삭제</button>
+										<!-- 답변, 수정, 삭제 -->
 									</c:if> 
-										<a href="./BoardList.bo">[목록]</a>&nbsp;&nbsp;
-									</font></td>
-								</tr>
-							</tbody>
-						</table>
+									</span>
+										<!-- 목록 -->
+										<button class="border-list" onclick="location.href='./BoardList.bo'">목록</button>
+										<!-- //목록 -->
+						
 					</div>
 				</div>
 			</div>
@@ -185,12 +149,8 @@
 					</div>
 					<!-- // 댓글 페이징 -->
 					
-					<hr>
-
-					<div class="card-header">
-						<h3>댓글 작성하기</h3>
-						<i class="fas fa-ellipsis-h"></i>
-					</div>
+					
+					<!-- 11.18 수정 및 추가 오정은 -->
 					<div class="card-content">
 						<!--  꼬리글 달기 테이블 -->
 						<c:set var="userid" value="${sessionScope.userid}" />
@@ -203,16 +163,15 @@
 							<table>
 								<c:choose>
 									<c:when test="${not empty sessionScope.userid}">
-										<tr>
-											<td class="leftAlign">${userid}<br> <br> <textarea
+											<div class="leftAlign">${userid}<br> <br> <textarea
 													class="textarea" name="commentContent" id="commentContent"
-													rows="2" cols="112" placeholder="댓글을 남겨보세요"></textarea>
-											</td>
-										</tr>
-										<tr>
-											<td class="rightAlign"><input type="submit" id="send"
-												value="등록"></td>
-										</tr>
+													placeholder="댓글을 남겨보세요"></textarea>
+									</div>
+										<!-- 댓글 등록 -->
+										<div class="comment-update">
+											<button class="board-update" type="submit" id="send">등록</button>
+										</div>
+										<!-- //댓글 등록 -->
 									</c:when>
 									<c:otherwise>
 										<tr>
@@ -223,6 +182,7 @@
 										</tr>
 									</c:otherwise>
 								</c:choose>
+								<!-- //11.18 수정 및 추가 오정은 -->
 
 							</table>
 						</form>
@@ -237,7 +197,7 @@
 		
 	</div>
 	<!-- //컨텐츠 -->
-
+<!-- //11.18 수정 및 추가 오정은 -->
 
 	<jsp:include page="/common/footer.jsp"></jsp:include>
 	<jsp:include page="/common/script.jsp"></jsp:include>
