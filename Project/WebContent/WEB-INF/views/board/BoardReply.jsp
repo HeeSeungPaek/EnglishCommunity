@@ -136,7 +136,7 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 									<td colspan="5">
 										<input type="submit" value="등록">
 										<!-- <a href="javascript:replyboard()">[등록]</a>&nbsp;&nbsp; --> 
-										<button type="button" onclick="javascript:history.go(-1)">뒤로</button>
+										<a href="javascript:history.go(-1)">[뒤로]</a></td>
 								</tr>
 
 							</table>

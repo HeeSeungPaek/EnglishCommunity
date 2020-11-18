@@ -100,8 +100,11 @@
 											</td>
 											<td class="edit">
 												<button type="" class="Update" id="Up"
-													value="${timeline.timeLineNumber}" style="float: right">수정</button>
-												<br> <a href="TimeLineDelete.tc?timeLineNumber=${timeline.timeLineNumber}" style="float: right">삭제<a>
+													value="${timeline.timeLineNumber}">수정</button>
+												<br> 
+												<div class="today-delete">
+													<a href="TimeLineDelete.tc?timeLineNumber=${timeline.timeLineNumber}">삭제</a>
+												</div>
 											</td>
 										</tr>
 

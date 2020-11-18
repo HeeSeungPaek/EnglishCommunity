@@ -61,56 +61,51 @@
 										<td>${board.reportingDate}</td>
 										
 										
-									</tr>
-								</c:forEach>
-									<c:set var="page" value="${requestScope.page}"/>
-									<c:set var="maxpage" value="${requestScope.maxpage}"/>
-									<c:set var="startpage" value="${requestScope.startpage}"/>
-									<c:set var="endpage" value="${requestScope.endpage}"/>
-									<c:set var="listcount" value="${requestScope.listcount}"/>
-									<tr align=center height=20>
-										<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
-											<c:choose>
-												<c:when test="${page<=1}">
-													[이전]&nbsp;
-												</c:when>
-												<c:otherwise>
-													<a href="./BoardList.bo?page=${page-1}">[이전]</a>&nbsp;
-												</c:otherwise>
-											</c:choose>
-											
-											<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+																			</tr>
+									</c:forEach>
+										<c:set var="page" value="${requestScope.page}"/>
+										<c:set var="maxpage" value="${requestScope.maxpage}"/>
+										<c:set var="startpage" value="${requestScope.startpage}"/>
+										<c:set var="endpage" value="${requestScope.endpage}"/>
+										<c:set var="listcount" value="${requestScope.listcount}"/>
+										
+					
+								</tbody>
+																		<tr align=center height=20>
+											<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
 												<c:choose>
-													<c:when test="${page==a}">
-														[${a}]
+													<c:when test="${page<=1}">
+														[이전]&nbsp;
 													</c:when>
 													<c:otherwise>
-														<a href="./BoardList.bo?page=${a}">[${a}]</a>
-														
+														<a href="./BoardList.bo?page=${page-1}">[이전]</a>&nbsp;
 													</c:otherwise>
 												</c:choose>
-											</c:forEach>
-											
-											<c:choose>
-												<c:when test="${page>=maxpage}">
-													&nbsp;[다음]
-												</c:when>
-												<c:otherwise>
-													&nbsp;<a href="./BoardList.bo?page=${page+1}">[다음]</a>
-												</c:otherwise>
-											</c:choose>
-										</td>
-									</tr>
-								
-							</tbody>
-						</table>
-						<c:set var="userid" value="${sessionScope.userid}"/>
-						<c:if test="${not empty sessionScope.userid}">
-							<c:if test="${userid=='admin'}">
-								<div align=right>글 개수 : ${listcount}&nbsp;&nbsp;</div>
-							</c:if>
-								<div align=right><a href="BoardWrite.bo">글쓰기</a></div>
-						</c:if>
+												
+												<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+													<c:choose>
+														<c:when test="${page==a}">
+															[${a}]
+														</c:when>
+														<c:otherwise>
+															<a href="./BoardList.bo?page=${a}">[${a}]</a>
+															
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+												
+												<c:choose>
+													<c:when test="${page>=maxpage}">
+														&nbsp;[다음]
+													</c:when>
+													<c:otherwise>
+														&nbsp;<a href="./BoardList.bo?page=${page+1}">[다음]</a>
+													</c:otherwise>
+												</c:choose>
+											</td>
+										</tr>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>

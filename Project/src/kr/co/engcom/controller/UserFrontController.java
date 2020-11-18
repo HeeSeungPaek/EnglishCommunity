@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.engcom.action.Action;
 import kr.co.engcom.action.ActionForward;
 import kr.co.engcom.service.user.LogInService;
+import kr.co.engcom.service.user.LogOutService;
 import kr.co.engcom.service.user.SignUpService;
 
 @WebServlet("*.go")

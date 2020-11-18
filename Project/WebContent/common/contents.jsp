@@ -147,21 +147,8 @@
 	</div>
 
 	<div class="row">
-		<!-- 날씨 -->
-		<div class="col-4 col-m-12 col-sm-12">
-			<div class="card">
-				<div class="card-header">
-					<h1>날씨</h1>
-					<i class="fas fa-ellipsis-h"></i>
-				</div>
-
-				<div class="card-content"></div>
-			</div>
-		</div>
-		<!-- //날씨 -->
-
 		<!-- 오늘의 단어퀴즈 -->
-		<div class="col-8 col-m-12 col-sm-12">
+		<div class="col-13 col-m-12 col-sm-12">
 			<div class="card">
 				<div class="card-header">
 					<h1>오늘의 단어퀴즈</h1>

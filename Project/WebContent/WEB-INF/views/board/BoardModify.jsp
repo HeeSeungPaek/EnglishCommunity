@@ -139,7 +139,7 @@
 									<td colspan="5">
 									<input type="submit" value="등록">
 									<!-- <a href="javascript:addboard()">[수정]</a>&nbsp;&nbsp; -->
-									<button type="button" onclick="javascript:history.go(-1)">뒤로</button>
+										<a href="javascript:history.go(-1)">[뒤로]</a></td>
 								</tr>
 							</table>
 						</form>

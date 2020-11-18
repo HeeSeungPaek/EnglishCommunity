@@ -62,11 +62,10 @@ body{
   height: 75px;
   top: -1px;
   left: -1px;
-  background: linear-gradient(to bottom, #ff8db8, #ed4785);
+  background-color: #9161d2;
   border-radius: 10px;
   
   margin-left: -40px;
-  
   color: #fff;
   font-family: 'Noto sans KR';
   font-size: 30px;

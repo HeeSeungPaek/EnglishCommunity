@@ -29,6 +29,9 @@
 <!-- SELECT count(*) FROM cmreply;
 SELECT count(*) FROM board;
 SELECT count(*) FROM usertable; -->
+<!-- header 추가 11.17 오정은 -->
+<div class="card-header"><h1>통계</h1></div>
+<!-- //header 추가 11.17 오정은 -->
 <canvas id="myChart" width="400" height="400"></canvas>
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');

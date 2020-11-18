@@ -139,14 +139,11 @@ h1 {
 .search{
 	position: absolute;
 	top: 50%;
-	right: 53%;
+	left: 95%;
 	transform: translateY(-50%);
 	color: #9a5fcb;
 	cursor: pointer;
 }
-
-
-
 .papago-page-btn {
 	background-color: #fff;
 }
@@ -323,6 +320,11 @@ h1 {
 }
 /* //카테고리 바로가기 */
 
+/*통계 추가 11.17 오정은*/
+#myChart {
+	padding: 20px;
+}
+/*//통계 추가 11.17 오정은*/
 /*통계*/
 .reading {background: linear-gradient(to right, #ff8db8, #ed4785);}
 .grammar {background: linear-gradient(to right, #8961c1, #5446c1);}
@@ -482,6 +484,9 @@ table th {
 @media screen and (max-width: 600px) { /*가로 사이즈가 600일 때 스크롤 생성*/
 	.main-board { overflow-x: scroll; }
 	.main-board { width: 650px; }
+	.papago {
+		display: none;
+	}
 }
 /*//전체 게시판*/
 
