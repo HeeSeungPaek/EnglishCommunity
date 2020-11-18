@@ -23,14 +23,14 @@ public class TimeLineUpdateService implements Action{
 			int n = timelinedao.updateTimeLine(new TimeLine(content_eng,content_kor,timelinenumber));
 			if(n > 0) {
 				msg="정상적으로 수정되었습니다.";
-				url="index2.jsp";
+				url="default.jsp";
 			}else {
 				msg="수정에 실패하였습니다.";
-				url="index2.jsp";
+				url="default.jsp";
 			}
 		} catch (Exception e) {
 			msg="다시 시도해 주세요";
-			url="Mindex2.jsp";
+			url="default.jsp";
 		}
 		request.setAttribute("msg",msg);
 	    request.setAttribute("url", url);

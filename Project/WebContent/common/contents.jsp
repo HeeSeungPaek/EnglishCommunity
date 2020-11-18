@@ -66,7 +66,7 @@
 							<i class="fas fa-book-reader"></i>
 						</p>
 						<h3>Reading</h3>
-						<p>영어 리빙 공부하기</p>
+						<p>영어 리딩 공부하기</p>
 					</div>
 				</a>
 			</div>
@@ -80,7 +80,7 @@
 							<i class="fas fa-comment-dots"></i>
 						</p>
 						<h3>Listening</h3>
-						<p>영어 발음 공부하기</p>
+						<p>영어 듣기 공부하기</p>
 					</div>
 				</a>
 			</div>

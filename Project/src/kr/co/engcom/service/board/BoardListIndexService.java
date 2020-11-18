@@ -31,7 +31,7 @@ public class BoardListIndexService implements Action{
 		List<BoardDto> boardlist = new ArrayList<>();
 		
 		int page = 1;
-		int limit = 5;
+		int limit = 7;
 		
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));

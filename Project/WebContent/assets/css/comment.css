@@ -1,0 +1,43 @@
+.comment-mt {
+	margin-top: 10px;
+}
+
+.comment-btn {
+	float: right;
+	margin-right: 5px;
+}
+
+.update-area {
+  width: 100%;
+  min-height: 12px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #182418;
+  border-radius: 4px;
+  background-color: #D1B7E8;
+  font-size: 16px;
+  resize: vertical;
+  display: none;
+}
+
+.cancel-btn {
+	background-color: #55EDFF;
+}
+
+.confirm-btn {
+	background-color: #0040FF;
+}
+
+span.comment-updated{
+	font-weight:none;
+	color: #68A000;
+	font-size:0.8em;
+}
+
+.updateConfirm{
+	display:none;
+}
+.updateCancel{
+	display:none;
+}

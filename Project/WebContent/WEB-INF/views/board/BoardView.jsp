@@ -45,14 +45,17 @@
 							${board.content}
 									<br>
 									<div class="board-img">
-										<div>첨부파일</div>
-									</div>
-									<c:choose>
+										<div>첨부파일&nbsp;&nbsp;&nbsp;&nbsp;
+										<c:choose>
 										<c:when test="${board.filename != null}">
 											<a href="download.jsp?file_name=${board.filename}">
 												${board.filename} </a>
 										</c:when>
-									</c:choose></div>
+										</c:choose>
+										</div>
+									</div>
+									
+						</div>
 									<br>
 									<span class="board-list-btn">
 									<c:if test="${not empty sessionScope.userid}">
@@ -83,20 +86,49 @@
 					<!-- 달린 댓글 header -->
 					<div class="card-header">
 						<h3>${board.contentNumber}번글의 댓글</h3>
+						
+						<!-- 댓글 수정여부 받아서 검사 == span 수정중 추가할 것**************   -->
+						
 					</div>
 					<!-- //달린 댓글 header -->
 					
 					<!-- 달린 댓글 contents -->					
 					<div class="card-content">
 						<c:forEach var="cmt" items="${comment}">
-							<div>
+							<div name="comments-target">
 								<span class="comment-id">&nbsp;${cmt.id}</span>
+								<c:if test="${cmt.update_Flag eq 'Y'}">
+								<span class="comment-updated">&nbsp;(수정됨)</span>
+								</c:if>
 								<span class="comment-date">${cmt.redate}</span>
 							</div>
 							
+							<!-- 댓글 수정, 삭제 버튼 조건! -->
+							<c:choose>
+							<c:when test="${cmt.id eq sessionScope.userid || sessionScope.usercode eq 1}">
+							<div id="comment-target">
+								<input type="hidden" name="commentNumber" value="${cmt.commentNumber}">
+								<div class="commentarea" value="${cmt.commentContent}">
+									${cmt.commentContent}
+								</div>
+								<textarea class="update-area" id="updateContent" name="updateContent">
+								</textarea>
+								<div class="comment-mt comment-mb">
+									<button type="button" class="comment-btn cmt-delete">댓글 삭제</button>
+									<button type="button" class="comment-btn cmt-update">댓글 수정</button>
+									<button type="button" class="comment-btn updateConfirm">수정하기</button>
+									<button type="button" class="comment-btn updateCancel">돌아가기</button>
+								</div>
+							</div>
+							</c:when>
+							<c:otherwise>
 							<div class="commentarea comment-mb">
 								${cmt.commentContent}
 							</div>
+							</c:otherwise>
+							</c:choose>
+							<!-- //댓글 수정, 삭제 버튼 조건! -->
+							
 						</c:forEach>
 					</div>
 					<!-- //달린 댓글 contents -->
@@ -201,5 +233,201 @@
 
 	<jsp:include page="/common/footer.jsp"></jsp:include>
 	<jsp:include page="/common/script.jsp"></jsp:include>
+	
+	<script type="text/javascript">
+		// 댓글 수정삭제버튼이 없을 경우 js 에러 > 방지하는 조건문
+		if($('#comment-target').length){	// 댓글 수정,삭제 버튼이 존재 = 1
+			//console.log($(this).length);
+			
+			$(function(){
+				$('.cmt-update').each(function(){
+					
+					var cmtupdate;
+					var cmtdelete;
+					var confirmbtn;
+					var cancelbtn;
+					
+					$(this).click(function(){
+						// 기존 코멘트 가져오기
+						var cmtContent = $(this).parent().siblings('.commentarea').attr("value");
+						//console.log(cmtContent);
+						
+						// 기존 요소 가지고 있기
+						var parentEle = $(this).parent();
+						updateBtn = $(this);
+						deleteBtn = $(this).siblings('.cmt-delete');	//확실한건지모름
+						var hiddenArea = $(this).parent().siblings('.update-area');
+						
+						cmtupdate = $(this);
+						cmtdelete = $(this).siblings('.cmt-delete');
+						confirmbtn = $(this).siblings('.updateConfirm');
+						cancelbtn = $(this).siblings('.updateCancel');
+						
+						// 새로운 textarea (수정하는 칸)
+						$(this).parent().siblings('.update-area').css('display','block').text(cmtContent);
+						$(this).css('display','none');
+						$(this).siblings('.cmt-delete').css('display','none');
+						$(this).siblings('.updateConfirm').css('display','block');
+						$(this).siblings('.updateCancel').css('display','block');
+						
+						// '수정하기' 버튼
+						parentEle.children('.updateConfirm').on({	// $(this) 는 .updateConfirm
+							click:function(){
+								//console.log($(this).parent().siblings('.update-area').val());
+								//console.log($(this).parent().siblings('.update-area').text());
+								if($(this).parent().siblings('.update-area').val() === ""){
+									swal({
+										title: "수정하실 댓글을 입력해주세요.",
+										text: "공백은 허용하지 않습니다!",
+										icon: "warning",
+										button: "고칠게요!",
+									});
+								}else {
+									swal({
+										title: "정말로 수정하시겠어요?",
+										icon: "info",
+										closeOnClickOutSide: false,	// 확인 버튼(true) 제외하고 모두 (false || null) = false
+										buttons: {
+											cancle: {	// cancel 아닌가???
+												text: '마음이 바꼈어요..',
+												value: false,
+												className: 'cancel-btn'
+											},
+											confirm: {
+												text: "수정할게요!",
+												value: true,
+												className: 'confirm-btn'
+											}
+										}
+									}).then(function(isConfirmed){
+										if(isConfirmed == null || !isConfirmed) {	/*수정취소*/
+											swal("수정을 취소하셨습니다.", "수정하기 창을 닫으시려면 '돌아가기' 버튼을 눌러주세요.", "warning");
+										}else if (isConfirmed){						/*수정확인*/
+											//console.log("수정할 내용:"+parentEle.siblings('.update-area').val().trim());
+											//console.log("수정할 번호"+parentEle.siblings('input:hidden').val());
+											
+											$.ajax({
+												url:"UpdateComment",
+												type: "POST",
+												dataType:"html",
+												data : {
+													updateContent: parentEle.siblings('.update-area').val().trim(),
+													commentNumber: parentEle.siblings('input[type="hidden"]').val()
+												},
+												success:function(responseData){
+													
+													// 성공적으로 댓글 수정되었을 경우
+													if(responseData.trim() === "Complete"){
+														let updatedCmt = cmtupdate.parent().siblings('.update-area').val();
+														console.log(updatedCmt);
+														cmtupdate.parent().siblings('.commentarea').attr("value",updatedCmt);
+														cmtupdate.parent().siblings('.commentarea').text(updatedCmt);
+														cmtupdate.parent().siblings('.update-area').css('display','none').text("");
+														
+														cmtupdate.css('display','block');
+														cmtdelete.css('display','block');
+														confirmbtn.css('display','none');
+														cancelbtn.css('display','none');
+														
+														swal("수정 완료", "댓글이 성공적으로 수정되었습니다.", "success");
+														setTimeout(function(){
+															location.reload();
+														},1500);
+													}else {
+														swal("수정 실패", "다시 시도해주세요.", "error");
+													}
+												},
+												error : function(request, status, error ) {   // 오류가 발생했을 때 호출된다. 
+													console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+													swal("에러 발생", "다시 시도해주세요.", "error");
+												}
+											});
+										}
+									});
+									
+								}
+							}
+						})
+						
+						// '돌아가기' 버튼
+						parentEle.children('.updateCancel').on({
+							click:function(){
+								$(this).parent().siblings('.update-area').css('display','none').text('');
+								$(this).parent().siblings('.update-area').attr('value','');
+								cmtupdate.css('display','block');
+								cmtdelete.css('display','block');
+								confirmbtn.css('display','none');
+								$(this).css('display','none');
+								
+								console.log("돌아가기 버튼 클릭함.")
+							}
+						});
+						
+					});
+				});
+				
+				// 댓글 삭제 버튼
+				$('.cmt-delete').each(function(){
+					$(this).click(function(){
+						var numberForDelete = $(this).parent().siblings('input[type="hidden"]').val();
+						console.log($(this).parent().siblings('input[type="hidden"]').val());
+						var cmtTarget_1 = $(this).parent().parent().siblings('div[name="comments-target"]');
+						var cmtTarget_2 = $(this).parent().parent();
+						
+						swal({
+							title: "정말로 삭제하시겠어요?",
+							icon: "info",
+							closeOnClickOutSide: false,	// 확인 버튼(true) 제외하고 모두 (false || null) = false
+							buttons: {
+								cancle: {	// cancel 아닌가???
+									text: '아니오',
+									value: false,
+									className: 'cancel-btn'
+								},
+								confirm: {
+									text: "삭제할래요.",
+									value: true,
+									className: 'confirm-btn'
+								}
+							}
+						}).then(function(isAllowed){
+							// 삭제 반대했을 경우
+							if(isAllowed == null || !isAllowed){
+								swal("삭제를 취소하셨습니다.");
+							}else {
+								// 삭제할 경우
+								$.ajax({
+									url:"DeleteComment",
+									type: "POST",
+									dataType:"html",
+									data : {
+										commentNumber: numberForDelete
+									},
+									success:function(responseData){
+										
+										// 성공적으로 댓글 삭제되었을 경우
+										if(responseData.trim() === "Complete"){
+											swal("삭제 완료", "댓글이 성공적으로 삭제되었습니다.", "success");
+											setTimeout(function(){
+												location.reload();
+											},1500);
+										}else {
+											swal("삭제 실패", "다시 시도해주세요.", "error");
+										}
+									},
+									error : function(request, status, error ) {   // 오류가 발생했을 때 호출된다. 
+										console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+										swal("에러 발생", "다시 시도해주세요.", "error");
+									}
+								});
+							}
+						});
+					});
+				});
+			});
+		}else{								// 댓글 수정,삭제 X = 0;				
+			console.log("X");
+		}
+	</script>
 </body>
 </html>

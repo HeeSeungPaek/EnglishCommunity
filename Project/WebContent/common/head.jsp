@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/board.css">
 <link rel="stylesheet" type="text/css" href="assets/css/today_style.css">
 <link rel="stylesheet" type="text/css" href="assets/css/canvas_style.css">
-<!-- <link rel="stylesheet" type="text/css" href="assets/css/canvas_style.css"> -->
+<link rel="stylesheet" type="text/css" href="assets/css/comment.css">
 
 <!-- sweetAlert CDN -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

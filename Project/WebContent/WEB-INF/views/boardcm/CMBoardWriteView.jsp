@@ -199,7 +199,7 @@ textarea {
 	<form id="imageForm" method="post" 
 		action="<%=request.getContextPath()%>/write.cm">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		[글 제목]<input type="text" name="CMBoardSubject" id ="CMBoardSubject"> [글 정답]<input
+		글 제목 : <input type="text" name="CMBoardSubject" id ="CMBoardSubject"> 글 정답 : <input
 			type="text" name="CMBoardAnswer" id = "CMBoardAnswer">
 			
 
@@ -273,6 +273,10 @@ textarea {
 									onclick="selectTool('line')" />
 								</span>
 							</div>
+								<div class="row">
+								<input type="submit" value="글 작성" class = "border-answer"><hr>
+								<INPUT type="button" value="Clear" onClick="initPage()" class = "border-answer"/>
+							</div>
 						</div>
 					</div>
 				</span> <span class="cell">
@@ -280,8 +284,7 @@ textarea {
 				</span> <span class="cell"> <INPUT type="hidden" id="load_filename"
 					value="Load" onChange="loadFile()" />
 					<div>
-						<INPUT type="hidden" value="Save"  /> <INPUT
-							type="button" value="Clear" onClick="initPage()" />
+						<INPUT type="hidden" value="Save"  /> 
 					</div>
 					<div>
 						<input type="hidden" value="Save as Json" onClick="SaveAsJson()" />
@@ -300,8 +303,8 @@ textarea {
 			</div>
 		</div>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" value="글 작성"> 
-		<a href="#"><input type="button" value="이전 페이지"></a>
+		
+		
 	</form>
 	
 	

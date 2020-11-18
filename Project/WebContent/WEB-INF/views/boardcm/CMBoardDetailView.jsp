@@ -111,11 +111,12 @@ $(function(){
 	<div class="row">
 		<div class="col-13 col-m-12 col-sm-12">
 			<div class="card">
-					<div class="card-header">
-						 [글 번호]<%=board.getCMBoardNumber() %><br>
- [글 제목]<%=board.getCMBoardSubject() %><br>
- [글 작성일]<%=board.getCMBoardDate() %><br>
- [작성자 ID]<%=board.getCMBoardId() %><br>
+					<div class="card-header"><h3>
+						 글 번호 : <%=board.getCMBoardNumber() %><br>
+ 글 제목 : <%=board.getCMBoardSubject() %><br>
+ 글 작성일 : <%=board.getCMBoardDate() %><br>
+ 작성자 ID : <%=board.getCMBoardId() %><br>
+ </h3>
 					</div>
 					<div class="card-content">
  
@@ -140,7 +141,7 @@ $(function(){
  <c:if test="${sessionId == userid}">
  <form action="<%=request.getContextPath()%>/CMBoardDeleteCheck.cm" method="post">
  <input type = "hidden" name ="CMBoardNumber" value="<%=board.getCMBoardNumber()%>">
- <input type = "submit" value ="글 삭제">
+ <input type = "submit" value ="글 삭제" >
  </form>
  </c:if>
  <hr>
