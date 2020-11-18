@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+s<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -11,35 +11,43 @@
 	function replyboard() {
 		boardform.submit();
 	}
-	$(function(){
-	    $('#summernote').summernote({
-	        placeholder: '내용을 입력하세요',
-	        tabsize: 2,
-	        height: 120,
-	        toolbar: [
-					['style', ['style']
-				],
-				['font', 
-					['bold', 'underline', 'clear']
-				],
-		        ['color', 
-		        	['color']
-		        ],
-		        ['para', 
-		        	['ul', 'ol', 'paragraph']
-		        ],
-		        ['table', 
-		        	['table']
-		        ],
-		        ['insert', 
-		        	['link', 'picture', 'video']
-		        ],
-		        ['view', 
-		        	['fullscreen', 'codeview', 'help']
-		        ]
-	        ]
-	      });
+    $(document).ready(function() {
+        $('#summernote').summernote({ // summernote를 사용하기 위한 선언
+            height: 400,
+			callbacks: { // 콜백을 사용
+                // 이미지를 업로드할 경우 이벤트를 발생
+			    onImageUpload: function(files, editor, welEditable) {
+				    sendFile(files[0], this);
+				}
+			}
+		});
 	});
+
+    
+    /* summernote에서 이미지 업로드시 실행할 함수 */
+ 	function sendFile(file, editor) {
+        // 파일 전송을 위한 폼생성
+ 		data = new FormData();
+ 	    data.append("uploadFile", file);
+ 	    $.ajax({
+ 	        data : data,
+ 	        type : "POST",
+ 	      	enctype: 'multipart/form-data',
+ 	        url : "./summernote_imageUpload.jsp",
+ 	        cache : false,
+ 	        contentType : false,
+ 	        processData : false,
+ 	        success : function(data) { // 처리가 성공할 경우
+                // 에디터에 이미지 출력
+ 	        	$(editor).summernote('editor.insertImage', data.url);
+ 	        	//$('#summernote').append('<img src="'+data.url+'"/>');
+ 	        },
+ 	  		error:function(request,status,error){
+ 		    	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+ 		   }
+
+ 	    });
+ 	}
 </script>
 </head>
 

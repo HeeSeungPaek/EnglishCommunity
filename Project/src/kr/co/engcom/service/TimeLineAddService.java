@@ -37,12 +37,12 @@ public class TimeLineAddService implements Action {
 			url = "TimeLineWrite.tc";
 		}
 
-		request.setAttribute("board_msg", msg);
-		request.setAttribute("board_url", url);
-
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("/WEB-INF/views/redirect2.jsp");
+		request.setAttribute("msg",msg);
+	    request.setAttribute("url", url);
+	
+	    ActionForward forward = new ActionForward();
+	    forward.setRedirect(false);
+	    forward.setPath("/WEB-INF/views/redirect.jsp");
 		return forward;
 
 	}

@@ -32,12 +32,12 @@ public class TimeLineUpdateService implements Action{
 			msg="다시 시도해 주세요";
 			url="Mindex2.jsp";
 		}
-		request.setAttribute("board_msg",msg);
-	    request.setAttribute("board_url", url);
+		request.setAttribute("msg",msg);
+	    request.setAttribute("url", url);
 	
 	    ActionForward forward = new ActionForward();
 	    forward.setRedirect(false);
-	    forward.setPath("/WEB-INF/views/redirect2.jsp");
+	    forward.setPath("/WEB-INF/views/redirect.jsp");
 	
 	return forward;
 		

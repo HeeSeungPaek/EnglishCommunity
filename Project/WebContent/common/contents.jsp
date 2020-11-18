@@ -4,6 +4,7 @@
 <!-- 컨텐츠 -->
 <div class="wrapper">
 	<!-- 오늘의 회화 -->
+	`
 	<div class="row">
 		<div class="col-13 col-m-12 col-sm-12">
 			<div class="card">
