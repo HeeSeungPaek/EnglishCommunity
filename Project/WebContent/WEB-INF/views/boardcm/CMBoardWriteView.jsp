@@ -10,16 +10,13 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 canvas {
-	border: 1px solid blue;
+	border: 1px solid #9361d1;
+	margin-left: 10px;
+	margin-top: 10px;
 }
 
 .jb_table {
 	display: table;
-}
-
-.row {
-	border-radius: 10px;
-	display: table-row;
 }
 
 .cell {
@@ -186,16 +183,19 @@ textarea {
 	
 </script>
 </head>
-<body class="wrap">
+<body>
 
 		<jsp:include page="/common/top.jsp"></jsp:include>
 		<jsp:include page="/common/left.jsp"></jsp:include>
 		<jsp:include page="/common/login.jsp"></jsp:include>
-		<div class="wrapper">
- 		<div class="row">
- 		<div class="card">
-
-<h1>캐치 마인드</h1>
+	<div class="wrapper">
+		<div class="row">
+			<div class="col-13 col-m-12 col-sm-12">
+				<div class="card">
+						<div class="card-header">
+							<h1>퀴즈 캔버스</h1>
+						</div>
+						<div class="card-content">
 	<form id="imageForm" method="post" 
 		action="<%=request.getContextPath()%>/write.cm">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -222,7 +222,6 @@ textarea {
 	 	
 	 	
 		<div class="jb_table">
-			<div class="row">
 				<span class="cell" width="82">
 					<div>
 						<div class="jb_table">
@@ -277,9 +276,7 @@ textarea {
 						</div>
 					</div>
 				</span> <span class="cell">
-					<div>
-						<canvas id="canvas" width="720" height="720"></canvas>
-					</div>
+						<canvas id="canvas" width="1200px" height="720"></canvas>
 				</span> <span class="cell"> <INPUT type="hidden" id="load_filename"
 					value="Load" onChange="loadFile()" />
 					<div>
@@ -312,6 +309,8 @@ textarea {
 	</div>
  		</div>
  		</div>
+ 		</div>
+ 		
 		<jsp:include page="/common/footer.jsp"></jsp:include>	
 		<jsp:include page="/common/script.jsp"></jsp:include>	
 	

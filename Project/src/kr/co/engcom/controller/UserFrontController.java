@@ -56,8 +56,8 @@ public class UserFrontController extends HttpServlet {
 			forward = action.execute(request, response);
 		
 		}else if (url_Command.equals("/LogOut.go")) {	// 로그아웃 시
-			forward = new ActionForward();
-			forward.setPath("/WEB-INF/views/logOut.jsp");
+			action = new LogOutService();
+			forward = action.execute(request, response);
 		}
 		
 		if (forward != null) {

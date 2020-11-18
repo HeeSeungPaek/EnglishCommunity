@@ -1,0 +1,84 @@
+.test {
+	
+}
+.write-btn {
+	background-color: 9161d1;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 10px;
+	margin-bottom: 10px;
+	float: right;
+	font-size: 13px;
+}
+@media screen and (max-width: 600px) { /*가로 사이즈가 650일 때 스크롤 생성*/
+	.cmboard { 
+		overflow-x: scroll; 
+		width: 700px;
+		height: 350px;
+	}
+}
+a {
+	text-decoration:none;
+	color: #303c4c;
+	font-family: '돋음';
+}
+.total {
+	width: 100px;
+	padding-top: 10px;
+	font-size: 14px;
+}
+
+/*페이징 처리 11.17 오정은 추가*/
+.paging {
+	margin-top: 15px;
+	text-align: center;
+	font-size: 0;
+}
+.paging a,
+.paging strong {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	margin: 0 1px;
+	border: 1px solid #dbdbdb;
+	color: #767676;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 22px;
+	vertical-align: middle;
+  	text-decoration: none;
+}
+.paging a:hover,
+.paging a:active,
+.paging a:focus {
+	border: 2px solid #303c4c;
+}
+.paging strong {
+	color: #fff;
+	background: #303c4c;
+	border: 1px solid #303c4c;
+}
+.paging .direction {
+	background: url('http://leroro.net/images/ui/sp_btn_paging.gif') no-repeat;
+}
+.paging .direction.prev {
+	margin: 0 12px 0 1px;
+	background-position: -18px 2px;
+}
+.paging .direction.next {
+	margin: 0 1px 0 12px;
+	background-position: -38px 2px;
+}
+.paging .direction span {
+	position: absolute;
+	display: block;
+	width: 20px;
+	height: 18px;
+	overflow: hidden;
+	z-index: -1;
+}
+/*//페이징 처리 11.17 오정은 추가*/
+.jb_table {
+	margin-top: 10px;
+}

@@ -64,7 +64,6 @@ body{
   left: -1px;
   background-color: #9161d2;
   border-radius: 10px;
-  
   margin-left: -40px;
   color: #fff;
   font-family: 'Noto sans KR';
@@ -96,7 +95,6 @@ li:active{
   width: auto;
   height: 180px;
   border-radius: 6px;
-  border: 1px solid #c8c8c8;
   margin-top: 40px;
   line-height: 180px;
   text-align: center;

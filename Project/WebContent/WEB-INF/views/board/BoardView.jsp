@@ -23,6 +23,7 @@
 	<c:set var="currpage" value="${requestScope.currpage}" />
 	<!-- //댓글 페이지 -->
 	
+	<!-- 11.18 수정 및 추가 오정은 -->
 	<!-- 컨텐츠 -->
 	<div class="wrapper">
 		<!-- 전체 게시판 -->
@@ -31,7 +32,6 @@
 				<div class="card">
 					<div class="card-header">
 						<h1>${board.boardName} 게시판</h1>
-						<i class="fas fa-ellipsis-h"></i>
 					</div>
 					<div class="card-content">
 						<div class="board-confirm">
@@ -149,12 +149,8 @@
 					</div>
 					<!-- // 댓글 페이징 -->
 					
-					<hr>
-
-					<div class="card-header">
-						<h3>댓글 작성하기</h3>
-						<i class="fas fa-ellipsis-h"></i>
-					</div>
+					
+					<!-- 11.18 수정 및 추가 오정은 -->
 					<div class="card-content">
 						<!--  꼬리글 달기 테이블 -->
 						<c:set var="userid" value="${sessionScope.userid}" />
@@ -167,16 +163,15 @@
 							<table>
 								<c:choose>
 									<c:when test="${not empty sessionScope.userid}">
-										<tr>
-											<td class="leftAlign">${userid}<br> <br> <textarea
+											<div class="leftAlign">${userid}<br> <br> <textarea
 													class="textarea" name="commentContent" id="commentContent"
-													rows="2" cols="112" placeholder="댓글을 남겨보세요"></textarea>
-											</td>
-										</tr>
-										<tr>
-											<td class="rightAlign"><input type="submit" id="send"
-												value="등록"></td>
-										</tr>
+													placeholder="댓글을 남겨보세요"></textarea>
+									</div>
+										<!-- 댓글 등록 -->
+										<div class="comment-update">
+											<button class="board-update" type="submit" id="send">등록</button>
+										</div>
+										<!-- //댓글 등록 -->
 									</c:when>
 									<c:otherwise>
 										<tr>
@@ -187,6 +182,7 @@
 										</tr>
 									</c:otherwise>
 								</c:choose>
+								<!-- //11.18 수정 및 추가 오정은 -->
 
 							</table>
 						</form>
@@ -201,7 +197,7 @@
 		
 	</div>
 	<!-- //컨텐츠 -->
-
+<!-- //11.18 수정 및 추가 오정은 -->
 
 	<jsp:include page="/common/footer.jsp"></jsp:include>
 	<jsp:include page="/common/script.jsp"></jsp:include>

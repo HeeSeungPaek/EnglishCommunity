@@ -47,8 +47,7 @@
 
 </script>
 </head>
-
-<body class="wrap">
+<body>
 	<jsp:include page="/common/top.jsp"></jsp:include>
 	<jsp:include page="/common/left.jsp"></jsp:include>
 	<jsp:include page="/common/login.jsp"></jsp:include>
@@ -60,11 +59,9 @@
 			<div class="col-13 col-m-12 col-sm-12">
 				<div class="card">
 					<div class="card-header">
-						<h1>글쓰기</h1>
-						<i class="fas fa-ellipsis-h"></i>
+						<h1>게시판 글쓰기</h1>
 					</div>
 					<div class="card-content">
-
 						<form action="./BoardAddService.bo" method="post"
 							enctype="multipart/form-data" id="boardform" name="boardform">
 							<input type="hidden" name="id" value="${userid}">

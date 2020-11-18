@@ -17,100 +17,110 @@
 %>
 <html>
 <head>
-	<title>게시판</title>
+	<title>퀴즈 캔버스</title>
 	<jsp:include page="/common/head.jsp"></jsp:include>
 </head>
-<body class="wrap">
-
-		<jsp:include page="/common/top.jsp"></jsp:include>
-		<jsp:include page="/common/left.jsp"></jsp:include>
-		<jsp:include page="/common/login.jsp"></jsp:include>
+<!-- 퀴즈 캔버스 -->
+<body>
+	<jsp:include page="/common/top.jsp"></jsp:include>
+	<jsp:include page="/common/left.jsp"></jsp:include>
+	<jsp:include page="/common/login.jsp"></jsp:include>
 		
-		<div class="wrapper">
- 		<div class="row">
- 		<div class="card">
-
-<table width=570 border="0" cellpadding="0" cellspacing="0">
-	<tr align="center" valign="middle">
-		<td colspan="4">CM 게시판</td>
-		<td align=right>
-			<font size=2>글 개수 : ${listcount}</font>
-		</td>
-	</tr>
-	<tr align="center" valign="middle" bordercolor="#333333">
-		<td style="font-family:Tahoma;font-size:8pt;" width="8%" height="26">
-			<div align="center">번호</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="50%">
-			<div align="center">제목</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="14%">
-			<div align="center">작성자</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:8pt;" width="17%">
-			<div align="center">날짜</div>
-		</td>
-	</tr>
-	<%
-		for(int i=0; i<CMBoardList.size(); i++){
-			CMBoardDTO bl= (CMBoardDTO)CMBoardList.get(i);
-	%>
-	<tr align="center" valign="middle" bordercolor="#333333"
-		onmouseover="this.style.backgroundColor='F8F8F8'"
-		onmouseout="this.style.backgroundColor=''">
-		<td height="23" style="font-family:Tahoma;font-size:10pt;">
-			<%=bl.getCMBoardNumber()%>
-		</td>
-		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="left">
-			<a href="./CMBoardDetailService.cm?num=<%=bl.getCMBoardNumber()%>">
-				<%=bl.getCMBoardSubject()%>
-			</a>
-			</div>
-		</td>
-		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center"><%=bl.getCMBoardId() %></div>
-		</td>
-		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center"><%=bl.getCMBoardDate() %></div>
-		</td>	
-	</tr>
-	<%} %>
-	<tr align=center height=20>
-		<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
-			<%if(nowpage<=1){ %>
-			[이전]&nbsp;
-			<%}else{ %>
-			<a href="./list.cm?page=<%=nowpage-1 %>">[이전]</a>&nbsp;
-			<%} %>
-			
-			<%for(int a=startpage;a<=endpage;a++){
-				if(a==nowpage){%>
-				[<%=a %>]
-				<%}else{ %>
-				<a href="./list.cm?page=<%=a %>">[<%=a %>]</a>
-				&nbsp;
-				<%} %>
-			<%} %>
-			
-			<%if(nowpage>=maxpage){ %>
-			[다음]
-			<%}else{ %>
-			<a href="./list.cm?page=<%=nowpage+1 %>">[다음]</a>
-			<%} %>
-		</td>
-	</tr>
-	<tr align="right">
-		<td colspan="5">
-	   		<a href="writeView.cm">[글쓰기]</a>
-		</td>
-	</tr>
-</table>
-		</div>
+	<div class="wrapper">
+		<div class="row">
+			<div class="col-13 col-m-12 col-sm-12">
+				<div class="card">
+						<div class="card-header">
+							<h1>퀴즈 캔버스</h1>
+						</div>
+						<div class="card-content">
+							<!-- 전체 목록 개수, 글쓰기 버튼 11.17 오정은 수정 -->
+							<span class="total">전체 ${listcount}건</span>
+								<%if(id!=null && id.equals("admin")){%>
+								<span>
+								<!--<a href="./MemberListAction.me">[회원관리]</a>  -->
+								<%}%>
+					   			<button type="button" class="write-btn" onclick="location.href='writeView.cm'">
+						   			<i class="fas fa-pencil-alt">&nbsp&nbsp글쓰기</i>
+					   			</button>
+					   		</span>
+					   		<!-- //전체 목록 개수, 글쓰기 버튼 11.17 오정은 수정 -->
+					   		
+					   		<!-- 게시판 11.17 오정은 수정 -->
+						   	<div class="main-board">
+							   	<table>
+							   		<!-- 게시판 top -->
+								   	<thead>
+										<tr>
+											<th>번호</th>
+											<th>제목</th>
+											<th>작성자</th>
+											<th>날짜</th>
+										</tr>
+									</thead>
+									<!-- //게시판 top -->
+									
+									<!-- 게시글 -->
+									<tbody>
+										<%
+											for(int i=0; i<CMBoardList.size(); i++){
+												CMBoardDTO bl= (CMBoardDTO)CMBoardList.get(i);
+										%>
+										<tr align="center" valign="middle" bordercolor="#333333"
+											onmouseover="this.style.backgroundColor='F8F8F8'"
+											onmouseout="this.style.backgroundColor=''">
+											<td>
+												<%=bl.getCMBoardNumber()%>
+											</td>
+											<td>
+												<div align="left">
+													<a href="./CMBoardDetailService.cm?num=<%=bl.getCMBoardNumber()%>">
+														<%=bl.getCMBoardSubject()%>
+													</a>
+												</div>
+											</td>
+											<td>
+												<div align="center"><%=bl.getCMBoardId() %></div>
+											</td>
+											<td>
+												<div align="center"><%=bl.getCMBoardDate() %></div>
+											</td>	
+										</tr>
+									<%} %>
+									<!-- //게시글 11.17 오정은 수정-->
+									</tbody>
+								</table>
+							</div>
+								
+							<!-- 페이징 처리 11.17 오정은 수정-->
+							<div class="paging">
+								<%if(nowpage<=1){ %>
+								&nbsp;
+								<%}else{ %>
+								<a href="./list.cm?page=<%=nowpage-1 %>" class="direction prev"></a>&nbsp;
+								<%} %>
+								
+								<%for(int a=startpage;a<=endpage;a++){
+									if(a==nowpage){%>
+									<strong><%=a %></strong>
+									<%}else{ %>
+									<a href="./list.cm?page=<%=a %>"><%=a %></a>
+									&nbsp;
+									<%} %>
+								<%} %>
+								
+								<%if(nowpage>=maxpage){ %>
+								<%}else{ %>
+								<a href="./list.cm?page=<%=nowpage+1 %>" class="direction next"></a>
+								<%} %>
+						<!-- //페이징 처리 11.17 오정은 수정-->
+						</div>
+					</div>
+		 		</div>
+	 		</div>
  		</div>
- 		</div>
-		<jsp:include page="/common/footer.jsp"></jsp:include>	
-		<jsp:include page="/common/script.jsp"></jsp:include>	
-		
+	</div>
+	<jsp:include page="/common/footer.jsp"></jsp:include>	
+	<jsp:include page="/common/script.jsp"></jsp:include>	
 </body>
 </html>

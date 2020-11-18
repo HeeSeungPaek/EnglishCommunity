@@ -285,10 +285,24 @@ h1 {
 	padding: 10px;
 }
 
-/*오늘의 회화*/
+/*오늘의 회화 추가 11.17 오정은*/
 .todayenglishko {
 	color: #8f9297;
 }
+.page-item {
+	marigin: 0 auto;
+}
+.today-en,
+.today-ko {
+	text-align: left;
+}
+.today-en {
+	color: #303c4c;
+}
+.today-ko {
+	color: #8f9297;
+}
+/*//오늘의 회화*/
 
 /* 카테고리 바로가기 11.14일 추가 오정은*/
 .diary {

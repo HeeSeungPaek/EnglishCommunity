@@ -1,5 +1,14 @@
+.today-wrapper {
+	padding: 10px;
+    padding-top: 75px;
+    background: #f1f1f1;
+    transition: margin-left .5s;
+}
+}
+
+/*오늘의 회화 작성*/
 .today-link a { text-decoration: none; color: #fff} /*a태그 스타일*/
-.today-link a:hover, a:active {background-color: #ed4785;}
+.today-link a:hover, a:active {background-color: #ed4785; color: #fff;}
 
 div#today-dropdown > .dropdown {
 	position: absolute;
@@ -24,6 +33,7 @@ div#today-dropdown > .dropdown > ul > li a { /* 폰트 크기 및 간격 */
 	font-size: 13px;
 	border-top: 1px solid rgba(255, 255, 255, 0.05);
 	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+	color: #fff;
 }
 div#today-dropdown > .dropdown > ul > li a:hover {
 	background: #f16297;
@@ -107,6 +117,20 @@ div#today-dropdown > .dropdown > ul > li:last-child a {
 .cancel-btn:hover {
 	background-color: #303c4c;
 }
+/*//오늘의 회화 작성*/
+
+/*사용자에게 보여주는 오늘의 회화 화면*/
+.today-view-en {
+	color: #303c4c;
+	margin: 0;
+	padding-bottom: 6px;
+}
+
+.today-view-ko{
+	color: #d0cfcf;
+	font-weight: bold;
+}
+/*//사용자에게 보여주는 오늘의 회화 화면*/
 
 /*목록보기*/
 .panel {
@@ -133,6 +157,9 @@ div#today-dropdown > .dropdown > ul > li:last-child a {
 	font-size: 14px;
 	font-weight: bold;
 }
+.Update:hover {
+	cursor: pointer;
+}
 .delete-btn {
 	background-color: #8f9297;
 	border: none;
@@ -154,4 +181,15 @@ div#today-dropdown > .dropdown > ul > li:last-child a {
 }
 button:active{
 	background-color: red;
+}
+.today-delete {
+	margin-top: 12px;
+}
+.today-delete a{
+	background-color: #dcdcdc;
+	background-repeat: no-repeat;
+	color: #8f9297;
+	padding: 5px 8px;
+	border-radius: 5px;
+	font-weight: bold;
 }
